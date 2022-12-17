@@ -1,6 +1,12 @@
 let w = 400, h = 400;
 let xT = 0, yT = 0;
+let lW = 20;
 
+function reset() {
+    xT = 0;
+    yT = 0;
+    background(220);
+}
 
 function setup() {
     createCanvas(w, h);
@@ -10,18 +16,18 @@ function setup() {
 function draw() {
     let rand = random();
     if (rand < 0.25) {
-        drawTile(xT, yT, 20, 0, 0);
+        drawTile(xT, yT, lW, 0, 0);
     } else if (rand >= 0.25 && rand <= 0.50) {
-        drawTile(xT, yT, 20, 0, 1);
+        drawTile(xT, yT, lW, 0, 1);
     } else if (rand > 0.50 && rand <= 0.75) {
-        drawTile(xT, yT, 20, 1, 0);
+        drawTile(xT, yT, lW, 1, 0);
     } else {
-        drawTile(xT, yT, 20, 1, 1);
+        drawTile(xT, yT, lW, 1, 1);
     }
-    xT += 20;
+    xT += lW;
     if (xT >= w) {
         xT = 0;
-        yT += 20;
+        yT += lW;
     }
 
 

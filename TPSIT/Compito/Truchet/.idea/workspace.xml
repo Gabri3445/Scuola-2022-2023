@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39860b9a-d155-4fae-b74e-cb5fac1d5644" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Flower1/.idea/jsLibraryMappings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Flower1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Flower1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Flower2/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Flower2/.idea/Flower.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Flower2/.idea/jsLibraryMappings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Flower2/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Flower2/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Flower2/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Flower2/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Flower2/static/js/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/listeners.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/listeners.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/script.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +28,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Scuola/Scuola-2022-23/TPSIT/Compito/Pattern",
+    "last_opened_file_path": "C:/Scuola/Scuola-2022-23/TPSIT/Compito/Truchet",
+    "settings.editor.selected.configurable": "JavaScript.Libraries",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -47,6 +42,7 @@
       <option name="presentableId" value="Default" />
       <updated>1671265213635</updated>
       <workItem from="1671265215120" duration="44000" />
+      <workItem from="1671266434614" duration="293000" />
     </task>
     <servers />
   </component>
