@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,7 +8,13 @@ public class Main {
 
     public static void main(String[] args) {
         int input;
-        mcDonald.Burgers = new ArrayList<>();
+        ArrayList<Burger> initBurgers = new ArrayList<>();
+        initBurgers.add(new Burger(0, "Double Burger BBQ", 2, new BigDecimal("2.90")));
+        initBurgers.add(new Burger(1, "Crispy McBacon", 2, new BigDecimal("6.50")));
+        initBurgers.add(new Burger(2, "Double Chicken BBQ", 2, new BigDecimal("2.90")));
+        initBurgers.add(new Burger(3, "Double Cheeseburger", 2, new BigDecimal("2.90")));
+        initBurgers.add(new Burger(4, "McChicken", 2, new BigDecimal("6.20")));
+        mcDonald = new McDonald(initBurgers);
         do {
             System.out.println("""
                     [0] Print Menu
@@ -24,11 +31,19 @@ public class Main {
 
     static void printMenu(ArrayList<Burger> burgers) {
         System.out.println("Burgers available");
+        printBurgers(burgers, true);
+    }
+
+    static void printBurgers(ArrayList<Burger> burgers, boolean showQuantity) {
+        System.out.println();
         for (Burger burger : burgers) {
             System.out.println("------------------");
-            System.out.println(burger.description + "\nQuantity Available: " + burger.quantity);
+            System.out.println(burger.description);
+            if (showQuantity) {
+                System.out.println("Quantity Available: " + burger.quantity);
+            }
             System.out.println("Price: " + burger.price);
-            System.out.println("ID :" + burger.id);
+            System.out.println("ID : " + burger.id);
             System.out.println();
         }
     }
@@ -37,6 +52,7 @@ public class Main {
         ArrayList<Burger> receipt = new ArrayList<>();
         int input;
         do {
+            boolean exit = false;
             System.out.println("""
                     [0] Buy burgers
                     [1] Finalize
@@ -48,14 +64,41 @@ public class Main {
                     System.out.println("Enter id of the burger you wish to buy");
                     printMenu(burgers);
                     input = scanner.nextInt();
+                    try {
+                        Burger burger = getBurger(input, burgers);
+                        if (burger.quantity != 0) {
+                            burger.quantity--;
+                            receipt.add(burger);
+                        } else {
+                            System.out.println("Not enough burgers");
+                        }
+                    } catch (RuntimeException rE) {
+                        System.out.println("Burger not found");
+                    }
                 }
-                case 1 -> showReceipt(receipt);
+                case 1 -> {
+                    showReceipt(receipt);
+                    exit = true;
+                }
+            }
+            if (exit) {
+                break;
             }
         } while (input != 2);
     }
 
-    static void showReceipt(ArrayList<Burger> burgers) {
+    static Burger getBurger(int id, ArrayList<Burger> burgers) throws RuntimeException {
+        for (Burger burger : burgers) {
+            if (burger.id == id) {
+                return burger;
+            }
+        }
+        throw new RuntimeException();
+    }
 
+    static void showReceipt(ArrayList<Burger> burgers) {
+        System.out.println("Receipt");
+        printBurgers(burgers, false);
     }
 }
 
@@ -69,12 +112,12 @@ class McDonald {
 }
 
 class Burger {
-    String id;
+    int id;
     String description;
     int quantity;
-    float price;
+    BigDecimal price;
 
-    public Burger(String id, String description, int quantity, float price) {
+    public Burger(int id, String description, int quantity, BigDecimal price) {
         this.id = id;
         this.description = description;
         this.quantity = quantity;
