@@ -7,6 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         int input;
+        mcDonald.Burgers = new ArrayList<>();
         do {
             System.out.println("""
                     [0] Print Menu
@@ -14,24 +15,46 @@ public class Main {
                     [2] Exit
                     """);
             input = scanner.nextInt();
+            switch (input) {
+                case 0 -> printMenu(mcDonald.Burgers);
+                case 1 -> buyItems(mcDonald.Burgers);
+            }
         } while (input != 2);
     }
 
-    static void printMenu(McDonald mcDonald) {
+    static void printMenu(ArrayList<Burger> burgers) {
         System.out.println("Burgers available");
-        for (Burger burger : mcDonald.Burgers) {
+        for (Burger burger : burgers) {
             System.out.println("------------------");
             System.out.println(burger.description + "\nQuantity Available: " + burger.quantity);
             System.out.println("Price: " + burger.price);
+            System.out.println("ID :" + burger.id);
             System.out.println();
         }
     }
 
-    static void buyItems(McDonald mcDonald) {
-
+    static void buyItems(ArrayList<Burger> burgers) {
+        ArrayList<Burger> receipt = new ArrayList<>();
+        int input;
+        do {
+            System.out.println("""
+                    [0] Buy burgers
+                    [1] Finalize
+                    [2] Exit back to menu
+                    """);
+            input = scanner.nextInt();
+            switch (input) {
+                case 0 -> {
+                    System.out.println("Enter id of the burger you wish to buy");
+                    printMenu(burgers);
+                    input = scanner.nextInt();
+                }
+                case 1 -> showReceipt(receipt);
+            }
+        } while (input != 2);
     }
 
-    static void showReceipt(/*TODO return from buy items*/) {
+    static void showReceipt(ArrayList<Burger> burgers) {
 
     }
 }
