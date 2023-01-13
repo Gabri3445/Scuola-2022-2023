@@ -1,0 +1,39 @@
+body {
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: 'Russo One', sans-serif;
+    color:white;
+    overflow: hidden;
+}
+h1{
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 78px;
+    margin-bottom: 20px;
+}
+h2{
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+#buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#buttons button {
+    width: 50px;
+    height: 50px;
+    border: 2px solid white;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+#buttons button:active {
+    border-radius: 15px;
+}
