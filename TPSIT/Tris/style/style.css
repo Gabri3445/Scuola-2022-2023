@@ -93,6 +93,10 @@
     align-items: center;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 .first-row > div > span, .second-row > div > span, .third-row > div > span {
     font-size: 170px;
     text-align: center;
