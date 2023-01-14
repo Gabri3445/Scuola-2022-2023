@@ -1,0 +1,106 @@
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+.container {
+    flex-direction: column;
+}
+
+* {
+    font-family: 'Ubuntu', sans-serif;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.title {
+    font-family: 'Ubuntu', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 96px;
+    line-height: 110px;
+    text-align: center;
+    margin-top: 38px;
+}
+
+.subtitle {
+    font-family: 'Ubuntu', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 37px;
+    /* identical to box height */
+    margin-top: 28px;
+
+    text-align: center;
+}
+
+#score {
+    font-family: 'Ubuntu', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 43px;
+    line-height: 49px;
+    text-align: center;
+    margin-top: 39px;
+}
+
+.resetButton {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    width: 10%;
+    margin-top: 20px;
+}
+.resetButton:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+
+.tris {
+    margin-top: 40px;
+}
+
+.first-row, .second-row, .third-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.first-row > div, .second-row > div, .third-row > div {
+    width: 170px;
+    background-color: red;
+    border: 1px solid black;
+    height: 170px;
+    display: flex;
+    align-items: center;
+}
+
+.first-row > div > span, .second-row > div > span, .third-row > div > span {
+    font-size: 170px;
+    text-align: center;
+    width: 170px;
+    display: block;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+}

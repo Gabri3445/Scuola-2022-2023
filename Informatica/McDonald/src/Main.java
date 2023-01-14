@@ -41,9 +41,11 @@ public class Main {
             System.out.println(burger.description);
             if (showQuantity) {
                 System.out.println("Quantity Available: " + burger.quantity);
+            } else {
+                System.out.println("Quantity bought: " + burger.boughtQuantity);
             }
             System.out.println("Price: " + burger.price);
-            System.out.println("ID : " + burger.id);
+            System.out.println("ID: " + burger.id);
             System.out.println();
         }
     }
@@ -66,7 +68,8 @@ public class Main {
                     input = scanner.nextInt();
                     try {
                         Burger burger = getBurger(input, burgers);
-                        if (burger.quantity != 0) {
+                        if (burger.quantity >= 0) {
+                            burger.boughtQuantity++;
                             burger.quantity--;
                             receipt.add(burger);
                         } else {
@@ -97,8 +100,25 @@ public class Main {
     }
 
     static void showReceipt(ArrayList<Burger> burgers) {
+        BigDecimal money;
+        BigDecimal required = new BigDecimal(0);
+        for (Burger burger : burgers) {
+            required = required.add(burger.price);
+        }
+        boolean temp = false;
+        do {
+            System.out.println("Enter " + required + " or more");
+            money = scanner.nextBigDecimal();
+            if (money.compareTo(required) > 0) {
+                temp = true;
+            }
+        } while (!temp);
         System.out.println("Receipt");
         printBurgers(burgers, false);
+        for (Burger burger : burgers) {
+            burger.boughtQuantity = 0;
+        }
+        System.out.println("Remainder = " + (money.subtract(required)));
     }
 }
 
@@ -116,6 +136,8 @@ class Burger {
     String description;
     int quantity;
     BigDecimal price;
+
+    int boughtQuantity;
 
     public Burger(int id, String description, int quantity, BigDecimal price) {
         this.id = id;
