@@ -8,23 +8,35 @@ import java.util.Scanner;
 
 public class McDonald {
     private final static Scanner scanner = new Scanner(System.in);
+    /**
+     * List of available burgers
+     * {@link Burger}
+     */
+    private final ArrayList<Burger> Burgers;
+
+    public McDonald(ArrayList<Burger> burgers) {
+        this.Burgers = burgers;
+    }
 
     public ArrayList<Burger> getBurgers() {
         return Burgers;
     }
 
-    private final ArrayList<Burger> Burgers;
-
-    public McDonald(ArrayList<Burger> burgers) {
-        Burgers = burgers;
-    }
-
+    /**
+     * Prints the menu
+     * @param burgers which burgers to print
+     */
     public void printMenu(ArrayList<Burger> burgers) {
         System.out.println("Burgers available");
         printBurgers(burgers, true);
     }
 
-     private void printBurgers(@NotNull ArrayList<Burger> burgers, boolean showQuantity) {
+    /**
+     * Prints the burgers
+     * @param burgers burgers to print
+     * @param showQuantity If set to true shows the quantity, otherwise shows the bought quantity
+     */
+    private void printBurgers(@NotNull ArrayList<Burger> burgers, boolean showQuantity) {
         System.out.println();
         for (Burger burger : burgers) {
             System.out.println("------------------");
@@ -40,6 +52,10 @@ public class McDonald {
         }
     }
 
+    /**
+     * Shows the receipt
+     * @param burgers which burgers to print
+     */
     private void showReceipt(@NotNull ArrayList<Burger> burgers) {
         BigDecimal money;
         BigDecimal required = new BigDecimal(0);
@@ -62,6 +78,10 @@ public class McDonald {
         System.out.println("Remainder = " + (money.subtract(required)));
     }
 
+    /**
+     * Handles the buying process
+     * @param burgers burgers available
+     */
     public void buyItems(ArrayList<Burger> burgers) {
         ArrayList<Burger> receipt = new ArrayList<>();
         int input;
@@ -88,7 +108,7 @@ public class McDonald {
                             System.out.println("Not enough burgers");
                         }
                     } catch (RuntimeException rE) {
-                        System.out.println("com.gabri3445.mcdonald.Burger not found");
+                        System.out.println("Burger not found");
                     }
                 }
                 case 1 -> {
@@ -102,6 +122,13 @@ public class McDonald {
         } while (input != 2);
     }
 
+    /**
+     * Gets a burger with the specified ID
+     * @param id ID of the requested burger
+     * @param burgers burgers to search through
+     * @return The burger matching the ID
+     * @throws RuntimeException Gets thrown if there is no burger
+     */
     private @NotNull Burger getBurger(int id, @NotNull ArrayList<Burger> burgers) throws RuntimeException {
         for (Burger burger : burgers) {
 

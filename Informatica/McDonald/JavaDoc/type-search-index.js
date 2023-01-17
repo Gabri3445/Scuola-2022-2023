@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.gabri3445.mcdonald","l":"Burger"},{"p":"com.gabri3445.mcdonald","l":"Main"},{"p":"com.gabri3445.mcdonald","l":"McDonald"}];updateSearchResults();

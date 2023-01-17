@@ -3,10 +3,25 @@ package com.gabri3445.mcdonald;
 import java.math.BigDecimal;
 
 public class Burger {
+    /**
+     * ID of the burger
+     */
     private final int id;
+    /**
+     * Description of the burger
+     */
     private final String description;
-    private int quantity;
+    /**
+     * Price in euro of the burger
+     */
     private final BigDecimal price;
+    /**
+     * Quantity of the burger available
+     */
+    private int quantity;
+    /**
+     * Quantity purchased by the client
+     */
     private int boughtQuantity;
 
     public Burger(int id, String description, int quantity, BigDecimal price) {
