@@ -26,8 +26,7 @@ let gameState = 0; //reset
  */
 
 const score = {
-    X: 0,
-    O: 0
+    X: 0, O: 0
 }
 
 cellList.forEach(row => {
@@ -96,7 +95,7 @@ function checkForVictory(board) {
     return 0;
 }
 
-document.querySelector(".resetButton").addEventListener("click", event => {
+document.querySelector(".resetButton").addEventListener("click", () => {
     for (let i = 0; i < 9; i++) {
         cellStatus[i] = 0;
     }
@@ -106,4 +105,7 @@ document.querySelector(".resetButton").addEventListener("click", event => {
     cellList.forEach(row => {
         row.children[0].innerHTML = "";
     })
+    for (let i = 0; i < 9; i++) {
+        cellList[i].classList.add("pointer");
+    }
 })
