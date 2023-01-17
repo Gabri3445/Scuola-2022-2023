@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="McDonald:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/McDonald_jar</output-path>
+    <root id="archive" name="McDonald.jar">
+      <element id="module-output" name="McDonald" />
+    </root>
+  </artifact>
+</component>
