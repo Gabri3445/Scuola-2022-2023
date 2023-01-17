@@ -1,3 +1,5 @@
+package com.gabri3445.mcdonald;
+
 import java.math.BigDecimal;
 
 public class Burger {

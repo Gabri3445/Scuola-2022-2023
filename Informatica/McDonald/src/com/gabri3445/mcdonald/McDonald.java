@@ -1,3 +1,5 @@
+package com.gabri3445.mcdonald;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;
@@ -86,7 +88,7 @@ public class McDonald {
                             System.out.println("Not enough burgers");
                         }
                     } catch (RuntimeException rE) {
-                        System.out.println("Burger not found");
+                        System.out.println("com.gabri3445.mcdonald.Burger not found");
                     }
                 }
                 case 1 -> {
