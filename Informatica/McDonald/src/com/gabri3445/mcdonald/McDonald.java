@@ -60,7 +60,6 @@ public class McDonald {
         BigDecimal money;
         BigDecimal required = new BigDecimal(0);
         for (Burger burger : burgers) {
-            BigDecimal quantity = new BigDecimal(burger.getBoughtQuantity());
             required = required.add(burger.getPrice());
         }
         boolean temp = false;
