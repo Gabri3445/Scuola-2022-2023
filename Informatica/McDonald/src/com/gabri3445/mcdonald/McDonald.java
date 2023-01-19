@@ -60,6 +60,7 @@ public class McDonald {
         BigDecimal money;
         BigDecimal required = new BigDecimal(0);
         for (Burger burger : burgers) {
+            BigDecimal quantity = new BigDecimal(burger.getBoughtQuantity());
             required = required.add(burger.getPrice());
         }
         boolean temp = false;
@@ -103,7 +104,16 @@ public class McDonald {
                         if (burger.getQuantity() - burger.getBoughtQuantity() >= 0) {
                             burger.setBoughtQuantity(burger.getBoughtQuantity() + 1);
                             burger.setQuantity(burger.getQuantity() - 1);
-                            receipt.add(burger);
+                            boolean found = false;
+                            for (Burger burger1: receipt) {
+                                if (burger1.equals(burger)) {
+                                    found = true;
+                                    break;
+                                }
+                            }
+                            if (!found) {
+                                receipt.add(burger);
+                            }
                         } else {
                             System.out.println("Not enough burgers");
                         }

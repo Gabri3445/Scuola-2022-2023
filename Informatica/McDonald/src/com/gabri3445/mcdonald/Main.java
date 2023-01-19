@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         int input;
         ArrayList<Burger> initBurgers = new ArrayList<>();
-        initBurgers.add(new Burger(0, "Double com.gabri3445.mcdonald.Burger BBQ", 2, new BigDecimal("2.90")));
+        initBurgers.add(new Burger(0, "Double Burger BBQ", 2, new BigDecimal("2.90")));
         initBurgers.add(new Burger(1, "Crispy McBacon", 2, new BigDecimal("6.50")));
         initBurgers.add(new Burger(2, "Double Chicken BBQ", 2, new BigDecimal("2.90")));
         initBurgers.add(new Burger(3, "Double Cheeseburger", 2, new BigDecimal("2.90")));
