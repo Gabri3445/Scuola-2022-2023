@@ -10,3 +10,5 @@ stampato lo scontrino dove viene stampato ogni panino comprato e viene chiesto
 di pagare il totale. Il programma poi si ripete.
 ## UML
 ![image](https://user-images.githubusercontent.com/42178704/213656188-cdd6cb29-087f-4f48-a1ee-ea841b760dc6.png)
+## Casi d'uso
+![image](https://user-images.githubusercontent.com/42178704/213664279-535da5f3-229b-4675-ac6e-c168df2b93a5.png)
