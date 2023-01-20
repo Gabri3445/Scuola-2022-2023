@@ -8,3 +8,5 @@ di comprare dei panini vengono stampati i panini di nuovo e l'utente inserisce l
 id del panino che desidera comprare. Se decide di finallizare l'acquisto viene
 stampato lo scontrino dove viene stampato ogni panino comprato e viene chiesto
 di pagare il totale. Il programma poi si ripete.
+## UML
+![image](https://user-images.githubusercontent.com/42178704/213656188-cdd6cb29-087f-4f48-a1ee-ea841b760dc6.png)
