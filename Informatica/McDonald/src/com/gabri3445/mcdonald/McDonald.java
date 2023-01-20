@@ -24,6 +24,7 @@ public class McDonald {
 
     /**
      * Prints the menu
+     *
      * @param burgers which burgers to print
      */
     public void printMenu(ArrayList<Burger> burgers) {
@@ -33,7 +34,8 @@ public class McDonald {
 
     /**
      * Prints the burgers
-     * @param burgers burgers to print
+     *
+     * @param burgers      burgers to print
      * @param showQuantity If set to true shows the quantity, otherwise shows the bought quantity
      */
     private void printBurgers(@NotNull ArrayList<Burger> burgers, boolean showQuantity) {
@@ -54,6 +56,7 @@ public class McDonald {
 
     /**
      * Shows the receipt
+     *
      * @param burgers which burgers to print
      */
     private void showReceipt(@NotNull ArrayList<Burger> burgers) {
@@ -80,6 +83,7 @@ public class McDonald {
 
     /**
      * Handles the buying process
+     *
      * @param burgers burgers available
      */
     public void buyItems(ArrayList<Burger> burgers) {
@@ -104,7 +108,7 @@ public class McDonald {
                             burger.setBoughtQuantity(burger.getBoughtQuantity() + 1);
                             burger.setQuantity(burger.getQuantity() - 1);
                             boolean found = false;
-                            for (Burger burger1: receipt) {
+                            for (Burger burger1 : receipt) {
                                 if (burger1.equals(burger)) {
                                     found = true;
                                     break;
@@ -133,7 +137,8 @@ public class McDonald {
 
     /**
      * Gets a burger with the specified ID
-     * @param id ID of the requested burger
+     *
+     * @param id      ID of the requested burger
      * @param burgers burgers to search through
      * @return The burger matching the ID
      * @throws RuntimeException Gets thrown if there is no burger
