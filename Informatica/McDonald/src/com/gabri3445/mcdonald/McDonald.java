@@ -78,6 +78,7 @@ public class McDonald {
         for (Burger burger : burgers) {
             burger.setBoughtQuantity(0);
         }
+        System.out.println("Price to pay = " + required);
         System.out.println("Remainder = " + (money.subtract(required)));
     }
 
@@ -92,6 +93,7 @@ public class McDonald {
         do {
             boolean exit = false;
             System.out.println("""
+                                        
                     [0] Buy burgers
                     [1] Finalize
                     [2] Exit back to menu
