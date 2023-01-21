@@ -4,26 +4,31 @@ for (let i = 0; i < 9; i++) {
     cellList[i].classList.add("pointer");
 }
 
-let cellStatus = new Array(9); //reset
 /*
  * 0 = No X or O
  * 1 = X
  * 2 = O
  */
-for (let i = 0; i < 9; i++) {
-    cellStatus[i] = 0;
-}
-let player = 0; //reset
+let cellStatus = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]; // reset
 
-let drawCounter = 0; //reset
 
-let gameState = 0; //reset
+
+let player = 0; // reset
+
+let drawCounter = 0; // reset
+
+let gameState = 0; // reset
 /*
  * 0 = ongoing
  * 1 = X wins
  * 2 = O wins
  * 3 = Draw
  */
+
+const currentPlayer = {
+    X: document.querySelector("#X"),
+    O : document.querySelector("#O")
+}
 
 const score = {
     X: 0, O: 0
@@ -34,8 +39,12 @@ cellList.forEach(row => {
         console.log(event.target.classList.item(0));
         if (gameState === 0) {
             if (player === 0) {
-                if (cellStatus[parseInt(event.target.classList.item(0))] === 0) {
-                    cellStatus[parseInt(event.target.classList.item(0))] = 1
+                let cell = event.target.classList.item(0);
+                if (cellStatus[Math.floor(cell/3)][cell%3] === 0) {
+                    currentPlayer.X.classList.remove("underline");
+                    currentPlayer.O.classList.add("underline");
+                    let cell = event.target.classList.item(0)
+                    cellStatus[Math.floor(cell/3)][cell%3] = 1
                     console.log(cellStatus[parseInt(event.target.classList.item(0))])
                     event.target.children[0].innerHTML = "X";
                     event.target.classList.remove("pointer");
@@ -45,12 +54,16 @@ cellList.forEach(row => {
                         console.log("barillo X")
                         score.X++;
                         gameState = 1;
-                        document.querySelector("#score").innerHTML = `${score.X}-${score.O}`
+                        document.querySelector("#score").innerHTML = `${score.X} - ${score.O}`
                     }
                 }
             } else {
-                if (cellStatus[parseInt(event.target.classList.item(0))] === 0) {
-                    cellStatus[parseInt(event.target.classList.item(0))] = 2
+                let cell = event.target.classList.item(0);
+                if (cellStatus[Math.floor(cell/3)][cell%3] === 0) {
+                    let cell = event.target.classList.item(0)
+                    currentPlayer.X.classList.add("underline");
+                    currentPlayer.O.classList.remove("underline");
+                    cellStatus[Math.floor(cell/3)][cell%3] = 2
                     console.log(cellStatus[parseInt(event.target.classList.item(0))])
                     event.target.children[0].innerHTML = "O";
                     event.target.classList.remove("pointer");
@@ -60,7 +73,7 @@ cellList.forEach(row => {
                         console.log("barillo O")
                         score.O++;
                         gameState = 2;
-                        document.querySelector("#score").innerHTML = `${score.X}-${score.O}`
+                        document.querySelector("#score").innerHTML = `${score.X} - ${score.O}`
                     }
                 }
             }
@@ -73,32 +86,31 @@ cellList.forEach(row => {
 })
 
 function checkForVictory(board) {
-    for (let i = 0; i < 9; i += 3) {
-        if (board[i] === board[i + 1] && board[i + 1] === board[i + 2]) {
-            return board[i];
-        }
-    }
-
+    // check rows
     for (let i = 0; i < 3; i++) {
-        if (board[i] === board[i + 3] && board[i + 3] === board[i + 6]) {
-            return board[i];
+        if (board[i][0] === board[i][1] && board[i][1] === board[i][2]) {
+            return board[i][0];
         }
     }
-
-    if (board[0] === board[4] && board[4] === board[8]) {
-        return board[0];
+    // check columns
+    for (let i = 0; i < 3; i++) {
+        if (board[0][i] === board[1][i] && board[1][i] === board[2][i]) {
+            return board[0][i];
+        }
     }
-    if (board[2] === board[4] && board[4] === board[6]) {
-        return board[2];
+    // check diagonals
+    if (board[0][0] === board[1][1] && board[1][1] === board[2][2]) {
+        return board[0][0];
     }
-
+    if (board[0][2] === board[1][1] && board[1][1] === board[2][0]) {
+        return board[0][2];
+    }
     return 0;
 }
 
+
 document.querySelector(".resetButton").addEventListener("click", () => {
-    for (let i = 0; i < 9; i++) {
-        cellStatus[i] = 0;
-    }
+    cellStatus = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
     gameState = 0;
     drawCounter = 0;
     player = 0;
@@ -108,4 +120,6 @@ document.querySelector(".resetButton").addEventListener("click", () => {
     for (let i = 0; i < 9; i++) {
         cellList[i].classList.add("pointer");
     }
+    currentPlayer.X.classList.add("underline");
+    currentPlayer.O.classList.remove("underline");
 })
