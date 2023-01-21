@@ -12,10 +12,10 @@ public class Garage {
      * Bikes get places from 15 to 24
      */
     private final Vehicle[] vehicles = new Vehicle[MAXPLACES];
+    private final Scanner scanner = new Scanner(System.in);
     private int currentCarIndex = 0;
     private int currentBikeIndex = 15;
     private int currentHour;
-    private final Scanner scanner = new Scanner(System.in);
 
     public Garage(int currentHour) {
         this.currentHour = currentHour;
@@ -40,13 +40,13 @@ public class Garage {
     public InsertState enterVehicle(Vehicle vehicle) {
         if (vehicle instanceof Car) {
             // Handle Car
-            if (currentCarIndex == MAXCARPLACES - 1) return InsertState.NotEnoughSpaces;
+            if (currentCarIndex == MAXCARPLACES) return InsertState.NotEnoughSpaces;
             vehicles[currentCarIndex] = vehicle;
             currentCarIndex++;
             return InsertState.Success;
         } else if (vehicle instanceof Bike) {
             // Handle Bike
-            if (currentBikeIndex == MAXPLACES - 1) return InsertState.NotEnoughSpaces;
+            if (currentBikeIndex == MAXPLACES) return InsertState.NotEnoughSpaces;
             vehicles[currentBikeIndex] = vehicle;
             currentBikeIndex++;
             return InsertState.Success;
@@ -67,17 +67,19 @@ public class Garage {
             // Handle Car
             if (index > MAXCARPLACES - 1) return ExitState.OutOfRange;
             Car car = (Car) vehicle;
-            payment(car.getCostToEnter());
+            payment(car.getCostToEnter().multiply(BigDecimal.valueOf(car.getHoursPassed())));
             currentCarIndex--;
             vehicles[index] = null;
+            System.arraycopy(vehicles, index+1, vehicles, index, vehicles.length-index-1);
             return ExitState.Success;
         } else if (vehicle instanceof Bike) {
             // Handle Bike
             if (index > MAXCARPLACES && index < MAXPLACES - 1) return ExitState.OutOfRange;
             Bike bike = (Bike) vehicle;
-            payment(bike.getCostToEnter());
+            payment(bike.getCostToEnter().multiply(BigDecimal.valueOf(bike.getHoursPassed())));
             currentBikeIndex--;
             vehicles[index] = null;
+            System.arraycopy(vehicles, index+1, vehicles, index, vehicles.length-index-1);
             return ExitState.Success;
         }
         return ExitState.GeneralFailure;
@@ -100,7 +102,9 @@ public class Garage {
             currentHour++;
         }
         for (Vehicle vehicle : vehicles) {
-            vehicle.setHoursPassed(vehicle.getHoursPassed() + 1);
+            if (vehicle != null) {
+                vehicle.setHoursPassed(vehicle.getHoursPassed() + 1);
+            }
         }
     }
 

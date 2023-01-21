@@ -9,7 +9,6 @@ public class Vehicle {
     private final int entranceHour;
     private BigDecimal costToEnter;
     private int hoursPassed;
-
     public Vehicle(String name, String brand, String licensePlate, int entranceHour) {
         this.name = name;
         this.brand = brand;
@@ -44,5 +43,9 @@ public class Vehicle {
 
     public BigDecimal getCostToEnter() {
         return costToEnter;
+    }
+
+    public void setCostToEnter(BigDecimal costToEnter) {
+        this.costToEnter = costToEnter;
     }
 }
