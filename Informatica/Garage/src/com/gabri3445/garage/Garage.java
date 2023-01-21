@@ -4,56 +4,79 @@ import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Garage {
-    final int MAXPLACES = 25;
-    final int MAXCARPLACES = 15;
-    final int MAXBIKEPLACES = 10;
-    Vehicle[] vehicles = new Vehicle[MAXPLACES];
-    int currentCarIndex = 0;
-    int currentBikeIndex = 15;
+    private final int MAXPLACES = 25;
+    private final int MAXCARPLACES = 15;
+    private final int MAXBIKEPLACES = 10;
+    /**
+     * Cars get places from 0 to 14 <br>
+     * Bikes get places from 15 to 24
+     */
+    private final Vehicle[] vehicles = new Vehicle[MAXPLACES];
+    private int currentCarIndex = 0;
+    private int currentBikeIndex = 15;
+    private int currentHour;
+    private final Scanner scanner = new Scanner(System.in);
 
-    int CurrentHour = 0;
+    public Garage(int currentHour) {
+        this.currentHour = currentHour;
+    }
 
-    Scanner scanner = new Scanner(System.in);
+    public Vehicle[] getVehicles() {
+        return vehicles;
+    }
+
+    public int getCurrentHour() {
+        return currentHour;
+    }
 
     /**
-     * Handles entering the vehicles
-     * Cars get places from 0 to 14
+     * Handles entering the vehicles <br>
+     * Cars get places from 0 to 14 <br>
      * Bikes get places from 15 to 24
      *
      * @param vehicle Vehicle to be inserted
-     * @return Success if success, NotEnoughSpaces if there are not enough spaces, GeneralFailure if the vehicle is not of type Car or Bike
+     * @return {@link InsertState}
      */
     public InsertState enterVehicle(Vehicle vehicle) {
-        //TODO enter more system.outs
         if (vehicle instanceof Car) {
             // Handle Car
-            if (currentCarIndex == 14) return InsertState.NotEnoughSpaces;
+            if (currentCarIndex == MAXCARPLACES - 1) return InsertState.NotEnoughSpaces;
             vehicles[currentCarIndex] = vehicle;
+            currentCarIndex++;
             return InsertState.Success;
         } else if (vehicle instanceof Bike) {
             // Handle Bike
-            if (currentBikeIndex == 24) return InsertState.NotEnoughSpaces;
+            if (currentBikeIndex == MAXPLACES - 1) return InsertState.NotEnoughSpaces;
             vehicles[currentBikeIndex] = vehicle;
-            return InsertState.NotEnoughSpaces;
+            currentBikeIndex++;
+            return InsertState.Success;
         }
         return InsertState.GeneralFailure;
     }
 
+    /**
+     * Handles exiting the vehicles
+     *
+     * @param index   index of the vehicle to be removed
+     * @param vehicle vehicle to be removed (used for type checking)
+     * @return {@link ExitState}
+     */
     public ExitState exitVehicle(int index, Vehicle vehicle) {
-        //TODO enter more system.outs
-        if (index > 24 || index < 0) return ExitState.OutOfRange;
+        if (index > MAXPLACES - 1 || index < 0) return ExitState.OutOfRange;
         if (vehicle instanceof Car) {
             // Handle Car
-            if (index > 14) return ExitState.OutOfRange;
+            if (index > MAXCARPLACES - 1) return ExitState.OutOfRange;
             Car car = (Car) vehicle;
             payment(car.getCostToEnter());
+            currentCarIndex--;
             vehicles[index] = null;
             return ExitState.Success;
         } else if (vehicle instanceof Bike) {
             // Handle Bike
-            if (index > 15 && index < 24) return ExitState.OutOfRange;
+            if (index > MAXCARPLACES && index < MAXPLACES - 1) return ExitState.OutOfRange;
             Bike bike = (Bike) vehicle;
             payment(bike.getCostToEnter());
+            currentBikeIndex--;
             vehicles[index] = null;
             return ExitState.Success;
         }
@@ -68,6 +91,17 @@ public class Garage {
             money = scanner.nextBigDecimal();
             if (money.compareTo(required) >= 0) exit = true;
         } while (!exit);
+    }
+
+    public void advanceHour() {
+        if (currentHour == 24) {
+            currentHour = 0;
+        } else {
+            currentHour++;
+        }
+        for (Vehicle vehicle : vehicles) {
+            vehicle.setHoursPassed(vehicle.getHoursPassed() + 1);
+        }
     }
 
     enum InsertState {

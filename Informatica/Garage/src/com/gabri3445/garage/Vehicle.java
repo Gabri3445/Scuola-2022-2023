@@ -1,20 +1,29 @@
 package com.gabri3445.garage;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 public class Vehicle {
     private final String name;
     private final String brand;
     private final String licensePlate;
-    private final Date entranceDate;
+    private final int entranceHour;
     private BigDecimal costToEnter;
+    private int hoursPassed;
 
-    public Vehicle(String name, String brand, String licensePlate, Date entranceDate) {
+    public Vehicle(String name, String brand, String licensePlate, int entranceHour) {
         this.name = name;
         this.brand = brand;
         this.licensePlate = licensePlate;
-        this.entranceDate = entranceDate;
+        this.hoursPassed = 1;
+        this.entranceHour = entranceHour;
+    }
+
+    public int getHoursPassed() {
+        return hoursPassed;
+    }
+
+    public void setHoursPassed(int hoursPassed) {
+        this.hoursPassed = hoursPassed;
     }
 
     public String getName() {
@@ -29,15 +38,11 @@ public class Vehicle {
         return licensePlate;
     }
 
-    public Date getEntranceDate() {
-        return entranceDate;
+    public int getEntranceHour() {
+        return entranceHour;
     }
 
     public BigDecimal getCostToEnter() {
         return costToEnter;
-    }
-
-    public void setCostToEnter(BigDecimal costToEnter) {
-        this.costToEnter = costToEnter;
     }
 }

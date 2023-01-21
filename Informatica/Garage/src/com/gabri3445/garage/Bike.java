@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class Bike extends Vehicle {
-    public Bike(String name, String brand, String licensePlate, Date entranceDate) {
-        super(name, brand, licensePlate, entranceDate);
+    public Bike(String name, String brand, String licensePlate, int entranceHour) {
+        super(name, brand, licensePlate, entranceHour);
         setCostToEnter(BigDecimal.valueOf(1));
     }
 }
