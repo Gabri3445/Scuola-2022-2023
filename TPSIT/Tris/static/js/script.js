@@ -12,7 +12,6 @@ for (let i = 0; i < 9; i++) {
 let cellStatus = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]; // reset
 
 
-
 let player = 0; // reset
 
 let drawCounter = 0; // reset
@@ -27,7 +26,7 @@ let gameState = 0; // reset
 
 const currentPlayer = {
     X: document.querySelector("#X"),
-    O : document.querySelector("#O")
+    O: document.querySelector("#O")
 }
 
 const score = {
@@ -40,17 +39,18 @@ cellList.forEach(row => {
         if (gameState === 0) {
             if (player === 0) {
                 let cell = event.target.classList.item(0);
-                if (cellStatus[Math.floor(cell/3)][cell%3] === 0) {
+                if (cellStatus[Math.floor(cell / 3)][cell % 3] === 0) {
                     currentPlayer.X.classList.remove("underline");
                     currentPlayer.O.classList.add("underline");
                     let cell = event.target.classList.item(0)
-                    cellStatus[Math.floor(cell/3)][cell%3] = 1
+                    cellStatus[Math.floor(cell / 3)][cell % 3] = 1
                     console.log(cellStatus[parseInt(event.target.classList.item(0))])
                     event.target.children[0].innerHTML = "X";
                     event.target.classList.remove("pointer");
                     player = 1;
                     drawCounter++
                     if (checkForVictory(cellStatus) === 1) {
+                        currentPlayer.X.innerHTML = "X WON"
                         console.log("barillo X")
                         score.X++;
                         gameState = 1;
@@ -59,17 +59,18 @@ cellList.forEach(row => {
                 }
             } else {
                 let cell = event.target.classList.item(0);
-                if (cellStatus[Math.floor(cell/3)][cell%3] === 0) {
+                if (cellStatus[Math.floor(cell / 3)][cell % 3] === 0) {
                     let cell = event.target.classList.item(0)
                     currentPlayer.X.classList.add("underline");
                     currentPlayer.O.classList.remove("underline");
-                    cellStatus[Math.floor(cell/3)][cell%3] = 2
+                    cellStatus[Math.floor(cell / 3)][cell % 3] = 2
                     console.log(cellStatus[parseInt(event.target.classList.item(0))])
                     event.target.children[0].innerHTML = "O";
                     event.target.classList.remove("pointer");
                     player = 0;
                     drawCounter++;
                     if (checkForVictory(cellStatus) === 2) {
+                        currentPlayer.O.innerHTML = "O WON"
                         console.log("barillo O")
                         score.O++;
                         gameState = 2;
@@ -110,6 +111,10 @@ function checkForVictory(board) {
 
 
 document.querySelector(".resetButton").addEventListener("click", () => {
+    currentPlayer.O.innerHTML = "O"
+    currentPlayer.X.innerHTML = "X"
+    currentPlayer.O.classList.remove("underline");
+    currentPlayer.X.classList.remove("underline");
     cellStatus = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
     gameState = 0;
     drawCounter = 0;
