@@ -67,6 +67,22 @@ public class BankServerResource {
         return Response.status(404).build();
     }
 
+    @GET
+    @Path("/getBalance")
+    @Produces(MediaType.TEXT_PLAIN)
+    @Consumes(MediaType.TEXT_PLAIN)
+    public Response getBalance(@QueryParam("password") String password) {
+        if (password == null) {
+            return Response.status(400).build();
+        }
+        for (AccountHolder accountHolder : BankServerData.accountHolderList) {
+            if (Objects.equals(accountHolder.getPassword(), password)) {
+                return Response.ok(accountHolder.getBalance()).build();
+            }
+        }
+        return Response.status(404).build();
+    }
+
     @PUT
     @Path("/withdraw")
     @Produces(MediaType.TEXT_PLAIN)
