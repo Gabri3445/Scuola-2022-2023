@@ -35,7 +35,6 @@ const score = {
 
 cellList.forEach(row => {
     row.addEventListener("click", event => {
-        console.log(event.target.classList.item(0));
         if (gameState === 0) {
             if (player === 0) {
                 let cell = event.target.classList.item(0);
@@ -86,6 +85,7 @@ cellList.forEach(row => {
     })
 })
 
+/*
 function checkForVictory(board) {
     // check rows
     for (let i = 0; i < 3; i++) {
@@ -108,6 +108,32 @@ function checkForVictory(board) {
     }
     return 0;
 }
+*/
+
+function checkForVictory(board) {
+    // check rows
+    for (let i = 0; i < 3; i++) {
+        if (board[i][0] === board[i][1] && board[i][1] === board[i][2] && board[i][0] !== 0) {
+            return board[i][0];
+        }
+    }
+    // check columns
+    for (let i = 0; i < 3; i++) {
+        if (board[0][i] === board[1][i] && board[1][i] === board[2][i] && board[0][i] !== 0) {
+            return board[0][i];
+        }
+    }
+    // check diagonals
+    if (board[0][0] === board[1][1] && board[1][1] === board[2][2] && board[0][0] !== 0) {
+        return board[0][0];
+    }
+    if (board[0][2] === board[1][1] && board[1][1] === board[2][0] && board[0][2] !== 0) {
+        return board[0][2];
+    }
+    // no winner
+    return 0;
+}
+  
 
 
 document.querySelector(".resetButton").addEventListener("click", () => {
