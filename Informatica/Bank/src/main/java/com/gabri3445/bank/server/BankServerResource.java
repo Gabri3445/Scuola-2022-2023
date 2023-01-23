@@ -60,7 +60,7 @@ public class BankServerResource {
         }
         for (AccountHolder accountHolder : BankServerData.accountHolderList) {
             if (Objects.equals(accountHolder.getPassword(), password)) {
-                String plainText = String.join("/n", accountHolder.getMovements());
+                String plainText = String.join("\n ", accountHolder.getMovements());
                 return Response.ok(plainText).build();
             }
         }

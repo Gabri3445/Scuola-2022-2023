@@ -26,9 +26,9 @@ public class AccountHolder {
     }
 
     public Result withdraw(BigDecimal withdrawBalance) {
-        if (balance.compareTo(balance.subtract(withdrawBalance)) < 0) return Result.InsufficientBalance;
+        if (balance.compareTo(withdrawBalance) >= 0) return Result.InsufficientBalance;
         balance = balance.subtract(withdrawBalance);
-        movements.add("Withdrawn: " + withdrawBalance + "€");
+        movements.add("Withdrawn: " + withdrawBalance + "Euro");
         return Result.Success;
     }
 
