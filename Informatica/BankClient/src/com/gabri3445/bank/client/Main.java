@@ -25,7 +25,13 @@ public class Main {
         */
         int choice;
         HttpClient client = HttpClient.newHttpClient();
-        String url = "http://localhost:8080/bank/";
+        String url = "";
+        System.out.println("Enter 0 for local, 1 for remote");
+        choice = scanner.nextInt();
+        switch (choice) {
+            case 0 -> url = "http://localhost/bank/";
+            case 1 -> url = "http://gabri3445.ddns.net/bank/";
+        }
         do {
             System.out.println("""
                     [0] Ping the server
@@ -177,6 +183,9 @@ public class Main {
         HttpRequest request = HttpRequest.newBuilder().uri(uri).GET().build();
         try {
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode() != 200) {
+                throw new IOException();
+            }
             return 0;
         } catch (IOException | InterruptedException e) {
             return -1;
