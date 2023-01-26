@@ -14,7 +14,9 @@
           <element id="module-output" name="Bank" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: io.swagger.jaxrs.listing:swagger-jaxrs-listing:1.5.22" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.11.3" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.11.3" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.11.3" />
         </element>
       </element>
       <element id="directory" name="META-INF">

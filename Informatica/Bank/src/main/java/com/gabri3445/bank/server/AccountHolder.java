@@ -1,5 +1,8 @@
 package com.gabri3445.bank.server;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +13,9 @@ public class AccountHolder {
     private final String surname;
     private BigDecimal balance;
     private List<String> movements = new ArrayList<>();
-    public AccountHolder(String password, String name, String surname, BigDecimal balance) {
+
+    @JsonCreator
+    public AccountHolder(@JsonProperty("password") String password, @JsonProperty("name") String name, @JsonProperty("surname") String surname, @JsonProperty("balance") BigDecimal balance) {
         this.password = password;
         this.name = name;
         this.surname = surname;

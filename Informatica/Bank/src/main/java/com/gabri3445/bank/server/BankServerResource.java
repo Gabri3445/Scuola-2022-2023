@@ -10,9 +10,13 @@ import java.util.Objects;
 @Path("/bank")
 public class BankServerResource {
 
+    public BankServerResource() {
+    }
+
     @GET
     @Path("/ping")
     public Response ping() {
+        BankServerData.loadStatus();
         return Response.ok().build();
     }
 
@@ -31,6 +35,7 @@ public class BankServerResource {
             }
         }
         BankServerData.accountHolderList.add(new AccountHolder(password, name, surname, bigDecimalBalance));
+        BankServerData.saveStatus();
         return Response.ok().build();
     }
 
@@ -95,6 +100,7 @@ public class BankServerResource {
         for (AccountHolder accountHolder : BankServerData.accountHolderList) {
             if (accountHolder.getPassword().equals(password)) {
                 if (accountHolder.withdraw(bigDecimalBalance) == AccountHolder.Result.Success) {
+                    BankServerData.saveStatus();
                     return Response.ok().build();
                 }
                 return Response.status(400).build();
@@ -115,6 +121,7 @@ public class BankServerResource {
         for (AccountHolder accountHolder : BankServerData.accountHolderList) {
             if (accountHolder.getPassword().equals(password)) {
                 accountHolder.deposit(bigDecimalBalance);
+                BankServerData.saveStatus();
                 return Response.ok().build();
             }
         }
