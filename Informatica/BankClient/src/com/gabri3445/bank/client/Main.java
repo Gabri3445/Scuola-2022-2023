@@ -3,7 +3,6 @@ package com.gabri3445.bank.client;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URLEncoder;
 import java.net.http.HttpClient;
@@ -26,7 +25,7 @@ public class Main {
         */
         int choice;
         HttpClient client = HttpClient.newHttpClient();
-        String url = "http://localhost:8080/Bank-1.0-SNAPSHOT/bank/";
+        String url = "http://localhost:8080/bank/";
         do {
             System.out.println("""
                     [0] Ping the server
@@ -77,7 +76,7 @@ public class Main {
             System.out.println("Enter the user password");
             String password = scanner.next();
             String queryString = "?name=" + URLEncoder.encode(name, StandardCharsets.UTF_8) + "&surname=" + URLEncoder.encode(surname, StandardCharsets.UTF_8) + "&balance=" + initBalance + "&password=" + URLEncoder.encode(password, StandardCharsets.UTF_8);
-            URI uri = URI.create(url += queryString);
+            URI uri = URI.create(url + queryString);
             HttpRequest request = HttpRequest.newBuilder().uri(uri).POST(HttpRequest.BodyPublishers.noBody()).build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             responseCode = response.statusCode();
@@ -97,7 +96,7 @@ public class Main {
             System.out.println("Enter your password");
             String password = scanner.next();
             String queryString = "?password=" + URLEncoder.encode(password, StandardCharsets.UTF_8);
-            URI uri = URI.create(url += queryString);
+            URI uri = URI.create(url + queryString);
             HttpRequest request = HttpRequest.newBuilder().uri(uri).GET().build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() == 200) {
@@ -174,7 +173,7 @@ public class Main {
     }
 
     private static int ping(String url, @NotNull HttpClient httpClient) {
-        URI uri = URI.create(url += "ping");
+        URI uri = URI.create(url + "ping");
         HttpRequest request = HttpRequest.newBuilder().uri(uri).GET().build();
         try {
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());

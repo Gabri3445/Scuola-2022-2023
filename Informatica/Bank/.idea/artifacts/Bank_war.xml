@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="Bank-1.0-SNAPSHOT.war">
+    <root id="archive" name="Bank.war">
       <element id="artifact" artifact-name="Bank:war exploded" />
     </root>
   </artifact>

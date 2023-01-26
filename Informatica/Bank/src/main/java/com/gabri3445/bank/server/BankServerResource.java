@@ -7,7 +7,7 @@ import jakarta.ws.rs.core.Response;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-@Path("/bank")
+@Path("")
 public class BankServerResource {
 
     public BankServerResource() {
