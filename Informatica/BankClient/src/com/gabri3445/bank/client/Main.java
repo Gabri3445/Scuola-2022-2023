@@ -29,8 +29,8 @@ public class Main {
         System.out.println("Enter 0 for local, 1 for remote");
         choice = scanner.nextInt();
         switch (choice) {
-            case 0 -> url = "http://localhost/bank/";
-            case 1 -> url = "http://gabri3445.ddns.net/bank/";
+            case 0 -> url = "http://localhost:20000/bank/";
+            case 1 -> url = "http://gabri3445.ddns.net/api/bank/";
         }
         do {
             System.out.println("""
