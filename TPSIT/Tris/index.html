@@ -11,7 +11,14 @@
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="darken">
+<div id="menu">
+    <h3>Choose an option:</h3>
+    <button data-choice="0" class="menuButton">Local PVP</button>
+    <button data-choice="1" class="menuButton">Local CPU</button>
+    <button data-choice="2" class="menuButton">Multiplayer</button>
+
+</div>
 <div class="container flex">
     <h1 class="title">Tic-Tac-Toe</h1>
     <h2 class="subtitle">Combine three Xs or Os horizontally, vertically or diagonally</h2>
@@ -38,7 +45,10 @@
             <div><span></span></div>
         </div>
     </div>
-    <script src="./static/js/script.js"></script>
+    <script src="./static/js/LocalPvp.js"></script>
+    <script src="./static/js/Pvp.js"></script>
+    <script src="./static/js/LocalPve.js"></script>
+    <script src="./static/js/Menu.js"></script>
 </div>
 </body>
 </html>

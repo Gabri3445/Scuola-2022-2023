@@ -127,3 +127,48 @@ body {
 .underline {
     text-decoration: underline;
 }
+
+#menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    border-radius: 20px;
+    border: 5px solid white;
+}
+
+#menu.hidden {
+    display: none;
+}
+
+body.darken {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+body.darken .first-row > div,
+body.darken .second-row > div,
+body.darken .third-row > div {
+    background-color: rgba(255, 0, 0, 0.66);
+}
+
+#menu h3 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+#menu button {
+    color: white;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin: 20px 0;
+    cursor: pointer;
+}
