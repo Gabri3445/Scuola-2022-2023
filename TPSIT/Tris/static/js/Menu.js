@@ -7,7 +7,6 @@ buttons.forEach(button => {
         let choice = parseInt(button.dataset.choice);
         switch (choice) {
             case 0:
-                console.log("barille")
                 body.classList.remove("darken");
                 menu.classList.add("hidden");
                 localPvp();
@@ -17,6 +16,7 @@ buttons.forEach(button => {
                 break;
             case 2:
                 pvp();
+                break;
         }
     })
 })

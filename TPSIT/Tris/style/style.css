@@ -144,8 +144,8 @@ body {
     border: 5px solid white;
 }
 
-#menu.hidden {
-    display: none;
+.hidden {
+    display: none !important;
 }
 
 body.darken {
