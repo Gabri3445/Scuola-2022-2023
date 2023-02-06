@@ -19,7 +19,7 @@ function pvp() {
             referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
             body: JSON.stringify(data) // body data type must match "Content-Type" header
         });
-        return response.json(); // parses JSON response into native JavaScript objects
+        return response; // parses JSON response into native JavaScript objects
     }
 
     async function putData(url = '', data = {}) {
@@ -37,10 +37,13 @@ function pvp() {
             referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
             body: JSON.stringify(data) // body data type must match "Content-Type" header
         });
-        return response.json(); // parses JSON response into native JavaScript objects
+        return response; // parses JSON response into native JavaScript objects
     }
 
     async function CreateMatch(username) {
+        if (username === "") {
+            return "No username"
+        }
         let createUrl = url + "Create"
         let data = {
             username: username
@@ -50,21 +53,58 @@ function pvp() {
 
     async function CheckP2Connection(guid) {
         let checkUrl = url + "CheckP2Connection?guid=" + guid;
-        return await fetch(checkUrl).then((response) => response.json())
+        let response = await fetch(checkUrl);
+        let statusCode = response.status;
+        if (statusCode === 200) {
+            return response.json();
+        }
+        if (statusCode === 400) {
+            // TODO Consider replacing these with an object
+            return "Invalid UUID"
+        }
+        if (statusCode === 404) {
+            return "Not found"
+        }
+        if (statusCode === 406) {
+            return "P2 not connected"
+        }
     }
 
     async function ConnectP2(guid, username) {
+        if (username === "") {
+            return "Username Empty";
+        }
         let connectUrl = url + "ConnectP2"
         let data = {
             guid: guid,
             username: username
         }
-        return await putData(connectUrl, data);
+        let response =  await putData(connectUrl, data);
+        let statusCode = response.status;
+        if (statusCode === 200) {
+            return response.json();
+        }
+        if (statusCode === 400) {
+            return "Invalid UUID"
+        }
+        if (statusCode === 404) {
+            return "Not found"
+        }
     }
 
     async function GetBoardStatus(guid) {
         let getBoardUrl = url + "GetBoardStatus?guid=" + guid;
-        return await fetch(getBoardUrl).then((response) => response.json());
+        let response = await fetch(getBoardUrl);
+        let statusCode = response.status;
+        if (statusCode === 200) {
+            return response.json();
+        }
+        if (statusCode === 400) {
+            return "Invalid UUID"
+        }
+        if (statusCode === 404) {
+            return "Match not found"
+        }
     }
 
     async function MakeMove(guid, player, location) {
@@ -77,16 +117,39 @@ function pvp() {
                 y: location.y
             }
         }
-        return await putData(moveUrl, data);
+        let response = await putData(moveUrl, data);
+        let statusCode = response.status;
+        if (statusCode === 200) {
+            return response.json();
+        }
+        if (statusCode === 400) {
+            return "Invalid UUID"
+        }
+        if (statusCode === 404) {
+            return "Match not found"
+        }
     }
 
     async function GetPlayer(guid) {
         let getUrl = url + "GetPlayer?guid=" + guid;
-        return await fetch(getUrl).then((response) => response.json())
+        let response = await fetch(getUrl)
+        let statusCode = response.status;
+        if (statusCode === 200) {
+            return response.json();
+        }
+        if ()
     }
 
     async function CheckWin(guid) {
         let checkUrl = url + "CheckWin?guid=" + guid;
         return await fetch(checkUrl).then((response) => response.json());
+    }
+
+    async function Ping() {
+        let pingUrl = url +"Ping"
+        let response = await fetch(pingUrl).then((response) => response.status);
+        if (response !== 200) {
+            return "Not online"
+        }
     }
 }

@@ -117,9 +117,7 @@ public class Main {
                         tempTask.isComplete = true;
                         tempTask.assignedEmployee.isAssigned = false;
                         project.checkComplete();
-                    } else {
-                        System.out.println("No milestones");
-                    }
+                    } else
                 }
                 case 4 -> {
                     project.projectDay++;
@@ -198,7 +196,7 @@ class Project {
             milestone.checkComplete();
             System.out.println("Milestone: " + milestone.name + ", Percentage: " + milestone.percentage + ", " + (milestone.isComplete ? "Completed" : "Not completed"));
             for (Task task : milestone.tasks) {
-                System.out.println("Task " + task.name + ", Deadline:" + task.deadline + ", Employee assigned" + task.assignedEmployee.name + " " + task.assignedEmployee.surname + ", " + (task.isComplete ? "Completed" : "Not completed") + ", " + (task.isCritical ? "Critical" : "Not critical"));
+                System.out.println("Task " + task.name + ", Deadline:" + task.deadline + ", Employee assigned " + task.assignedEmployee.name + " " + task.assignedEmployee.surname + ", " + (task.isComplete ? "Completed" : "Not completed") + ", " + (task.isCritical ? "Critical" : "Not critical"));
             }
         }
         System.out.println();
