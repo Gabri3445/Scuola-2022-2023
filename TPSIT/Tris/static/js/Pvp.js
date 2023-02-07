@@ -137,7 +137,13 @@ function pvp() {
         if (statusCode === 200) {
             return response.json();
         }
-        if ()
+        if (statusCode === 400) {
+            return "Invalid UUID"
+        }
+        if (statusCode === )
+        if (statusCode === 406) {
+            return "Match over"
+        }
     }
 
     async function CheckWin(guid) {
