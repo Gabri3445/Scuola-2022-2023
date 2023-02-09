@@ -9,6 +9,7 @@ function localPvp() {
      * 0 = No X or O
      * 1 = X
      * 2 = O
+     * Arrays represent the rows, the elements each cell
      */
     let cellStatus = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]; // reset
 

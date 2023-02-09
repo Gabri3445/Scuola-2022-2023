@@ -12,7 +12,9 @@ buttons.forEach(button => {
                 localPvp();
                 break;
             case 1:
-                alert("WIP");
+                body.classList.remove("darken");
+                menu.classList.add("hidden");
+                localPve();
                 break;
             case 2:
                 pvp();

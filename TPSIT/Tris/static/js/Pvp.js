@@ -140,7 +140,7 @@ function pvp() {
         if (statusCode === 400) {
             return "Invalid UUID"
         }
-        if (statusCode === )
+        // TODO
         if (statusCode === 406) {
             return "Match over"
         }
