@@ -22,6 +22,6 @@ public class Main {
                     dog.makeSound();
                 }
             }
-        }while (choice != 2);
+        } while (choice != 2);
     }
 }
