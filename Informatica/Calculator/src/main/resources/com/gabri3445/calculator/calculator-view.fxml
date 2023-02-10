@@ -1,16 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<VBox alignment="CENTER" spacing="5.0" xmlns="http://javafx.com/javafx/11.0.14-internal"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gabri3445.calculator.controllers.CalculatorController">
+    <HBox alignment="CENTER_RIGHT">
+        <children>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.gabri3445.calculator.controllers.CalculatorController">
+            <Label fx:id="screen" alignment="CENTER_RIGHT" contentDisplay="CENTER" text="20" textAlignment="RIGHT">
+                <font>
+                    <Font name="JetBrains Mono Regular" size="60.0"/>
+                </font>
+            </Label>
+        </children>
+    </HBox>
+    <TilePane hgap="10.0" prefColumns="4" prefRows="1" prefTileHeight="50.0" prefTileWidth="60.0">
+        <children>
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="7">
+                <font>
+                    <Font name="JetBrains Mono Regular"/>
+                </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="8">
+                <font>
+                    <Font name="JetBrains Mono Regular"/>
+                </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="9">
+                <font>
+                    <Font name="JetBrains Mono Regular"/>
+                </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="/">
+                <font>
+                    <Font name="JetBrains Mono Regular"/>
+                </font>
+            </Button>
+        </children>
+    </TilePane>
+    <TilePane hgap="10.0" prefColumns="4" prefRows="1" prefTileHeight="50.0" prefTileWidth="60.0">
+        <children>
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="4">
+                <font>
+                    <Font name="JetBrains Mono Regular"/>
+                </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="5">
+                <font>
+                    <Font name="JetBrains Mono Regular"/>
+                </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="6">
+                <font>
+                    <Font name="JetBrains Mono Regular"/>
+                </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="*">
+                <font>
+                    <Font name="JetBrains Mono Regular"/>
+                </font>
+            </Button>
+        </children>
+    </TilePane>
+    <TilePane hgap="10.0" prefColumns="4" prefRows="1" prefTileHeight="50.0" prefTileWidth="60.0">
+        <children>
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="1">
+                <font>
+                    <Font name="JetBrains Mono Regular"/>
+                </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="2">
+                <font>
+                    <Font name="JetBrains Mono Regular"/>
+                </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="3">
+                <font>
+                    <Font name="JetBrains Mono Regular"/>
+                </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="-">
+                <font>
+                    <Font name="JetBrains Mono Regular"/>
+                </font>
+            </Button>
+        </children>
+    </TilePane>
+    <TilePane hgap="10.0" prefColumns="4" prefRows="1" prefTileHeight="50.0" prefTileWidth="60.0">
+        <children>
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text=".">
+                <font>
+                    <Font name="JetBrains Mono Regular"/>
+                </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="0">
+                <font>
+                    <Font name="JetBrains Mono Regular"/>
+                </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="=">
+                <font>
+                    <Font name="JetBrains Mono Regular"/>
+                </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="+">
+                <font>
+                    <Font name="JetBrains Mono Regular"/>
+                </font>
+            </Button>
+        </children>
+    </TilePane>
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
     </padding>
-
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
 </VBox>
