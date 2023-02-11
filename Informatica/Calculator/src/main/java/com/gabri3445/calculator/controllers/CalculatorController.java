@@ -83,4 +83,7 @@ public class CalculatorController {
             });
         }
     }
+    private void updateData(String screen) {
+        this.screen.setText(screen);
+    }
 }
