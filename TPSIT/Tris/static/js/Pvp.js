@@ -1,161 +1,158 @@
-function pvp() {
-    let url = "http://127.0.0.1:5258/api/TicTacToe/"
-    // let url = "http://gabri3445.ddns.net/api/TicTacToe/
-    fetch(url).then((response) => response.json()
-        .then((data) => console.log(data)));
-
-    async function postData(url = '', data = {}) {
-        // Default options are marked with *
-        const response = await fetch(url, {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            mode: 'cors', // no-cors, *cors, same-origin
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'same-origin', // include, *same-origin, omit
-            headers: {
-                'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            redirect: 'follow', // manual, *follow, error
-            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            body: JSON.stringify(data) // body data type must match "Content-Type" header
-        });
-        return response; // parses JSON response into native JavaScript objects
+async function Pvp() {
+    let cellList = document.querySelectorAll(".row > div");
+    for (let i = 0; i < 9; i++) {
+        cellList[i].classList.add(i.toString());
+        cellList[i].classList.add("pointer");
     }
 
-    async function putData(url = '', data = {}) {
-        // Default options are marked with *
-        const response = await fetch(url, {
-            method: 'PUT', // *GET, POST, PUT, DELETE, etc.
-            mode: 'cors', // no-cors, *cors, same-origin
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'same-origin', // include, *same-origin, omit
-            headers: {
-                'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            redirect: 'follow', // manual, *follow, error
-            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            body: JSON.stringify(data) // body data type must match "Content-Type" header
-        });
-        return response; // parses JSON response into native JavaScript objects
+    /*
+     * 0 = No X or O
+     * 1 = X
+     * 2 = O
+     * Arrays represent the rows, the elements each cell
+     */
+    let cellStatus = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]; // reset
+
+
+    let player = 0; // reset
+
+    let drawCounter = 0; // reset
+
+    let gameState = 0; // reset
+    /*
+     * 0 = ongoing
+     * 1 = X wins
+     * 2 = O wins
+     * 3 = Draw
+     */
+
+    const currentPlayer = {
+        X: document.querySelector("#X"), O: document.querySelector("#O")
     }
 
-    async function CreateMatch(username) {
-        if (username === "") {
-            return "No username"
-        }
-        let createUrl = url + "Create"
-        let data = {
-            username: username
-        };
-        return await postData(createUrl, data);
+    const score = {
+        X: 0, O: 0
     }
 
-    async function CheckP2Connection(guid) {
-        let checkUrl = url + "CheckP2Connection?guid=" + guid;
-        let response = await fetch(checkUrl);
-        let statusCode = response.status;
-        if (statusCode === 200) {
-            return response.json();
-        }
-        if (statusCode === 400) {
-            // TODO Consider replacing these with an object
-            return "Invalid UUID"
-        }
-        if (statusCode === 404) {
-            return "Not found"
-        }
-        if (statusCode === 406) {
-            return "P2 not connected"
-        }
-    }
+    cellList.forEach(row => {
+        row.addEventListener("click", event => {
+            if (gameState === 0) {
+                if (player === 0) {
+                    let cell = event.target.classList.item(0);
+                    if (cellStatus[Math.floor(cell / 3)][cell % 3] === 0) {
+                        currentPlayer.X.classList.remove("underline");
+                        currentPlayer.O.classList.add("underline");
+                        let cell = event.target.classList.item(0)
+                        cellStatus[Math.floor(cell / 3)][cell % 3] = 1
+                        console.log(cellStatus[parseInt(event.target.classList.item(0))])
+                        event.target.children[0].innerHTML = "X";
+                        event.target.classList.remove("pointer");
+                        player = 1;
+                        drawCounter++
+                        if (checkForVictory(cellStatus) === 1) {
+                            currentPlayer.X.innerHTML = "X WON"
+                            console.log("barillo X")
+                            score.X++;
+                            gameState = 1;
+                            document.querySelector("#score").innerHTML = `${score.X} - ${score.O}`
+                        }
+                    }
+                } else {
+                    let cell = event.target.classList.item(0);
+                    if (cellStatus[Math.floor(cell / 3)][cell % 3] === 0) {
+                        let cell = event.target.classList.item(0)
+                        currentPlayer.X.classList.add("underline");
+                        currentPlayer.O.classList.remove("underline");
+                        cellStatus[Math.floor(cell / 3)][cell % 3] = 2
+                        console.log(cellStatus[parseInt(event.target.classList.item(0))])
+                        event.target.children[0].innerHTML = "O";
+                        event.target.classList.remove("pointer");
+                        player = 0;
+                        drawCounter++;
+                        if (checkForVictory(cellStatus) === 2) {
+                            currentPlayer.O.innerHTML = "O WON"
+                            console.log("barillo O")
+                            score.O++;
+                            gameState = 2;
+                            document.querySelector("#score").innerHTML = `${score.X} - ${score.O}`
+                        }
+                    }
+                }
+                if (drawCounter === 9) {
+                    gameState = 3;
+                    console.log("barilraw")
+                }
+            }
+        })
+    })
 
-    async function ConnectP2(guid, username) {
-        if (username === "") {
-            return "Username Empty";
-        }
-        let connectUrl = url + "ConnectP2"
-        let data = {
-            guid: guid,
-            username: username
-        }
-        let response =  await putData(connectUrl, data);
-        let statusCode = response.status;
-        if (statusCode === 200) {
-            return response.json();
-        }
-        if (statusCode === 400) {
-            return "Invalid UUID"
-        }
-        if (statusCode === 404) {
-            return "Not found"
-        }
-    }
-
-    async function GetBoardStatus(guid) {
-        let getBoardUrl = url + "GetBoardStatus?guid=" + guid;
-        let response = await fetch(getBoardUrl);
-        let statusCode = response.status;
-        if (statusCode === 200) {
-            return response.json();
-        }
-        if (statusCode === 400) {
-            return "Invalid UUID"
-        }
-        if (statusCode === 404) {
-            return "Match not found"
-        }
-    }
-
-    async function MakeMove(guid, player, location) {
-        let moveUrl = url + "MakeMove"
-        let data = {
-            guid: guid,
-            player: player,
-            location: {
-                x: location.x,
-                y: location.y
+    /*
+    function checkForVictory(board) {
+        // check rows
+        for (let i = 0; i < 3; i++) {
+            if (board[i][0] === board[i][1] && board[i][1] === board[i][2]) {
+                return board[i][0];
             }
         }
-        let response = await putData(moveUrl, data);
-        let statusCode = response.status;
-        if (statusCode === 200) {
-            return response.json();
+        // check columns
+        for (let i = 0; i < 3; i++) {
+            if (board[0][i] === board[1][i] && board[1][i] === board[2][i]) {
+                return board[0][i];
+            }
         }
-        if (statusCode === 400) {
-            return "Invalid UUID"
+        // check diagonals
+        if (board[0][0] === board[1][1] && board[1][1] === board[2][2]) {
+            return board[0][0];
         }
-        if (statusCode === 404) {
-            return "Match not found"
+        if (board[0][2] === board[1][1] && board[1][1] === board[2][0]) {
+            return board[0][2];
         }
+        return 0;
+    }
+    */
+
+    function checkForVictory(board) {
+        // check rows
+        for (let i = 0; i < 3; i++) {
+            if (board[i][0] === board[i][1] && board[i][1] === board[i][2] && board[i][0] !== 0) {
+                return board[i][0];
+            }
+        }
+        // check columns
+        for (let i = 0; i < 3; i++) {
+            if (board[0][i] === board[1][i] && board[1][i] === board[2][i] && board[0][i] !== 0) {
+                return board[0][i];
+            }
+        }
+        // check diagonals
+        if (board[0][0] === board[1][1] && board[1][1] === board[2][2] && board[0][0] !== 0) {
+            return board[0][0];
+        }
+        if (board[0][2] === board[1][1] && board[1][1] === board[2][0] && board[0][2] !== 0) {
+            return board[0][2];
+        }
+        // no winner
+        return 0;
     }
 
-    async function GetPlayer(guid) {
-        let getUrl = url + "GetPlayer?guid=" + guid;
-        let response = await fetch(getUrl)
-        let statusCode = response.status;
-        if (statusCode === 200) {
-            return response.json();
-        }
-        if (statusCode === 400) {
-            return "Invalid UUID"
-        }
-        // TODO
-        if (statusCode === 406) {
-            return "Match over"
-        }
-    }
 
-    async function CheckWin(guid) {
-        let checkUrl = url + "CheckWin?guid=" + guid;
-        return await fetch(checkUrl).then((response) => response.json());
-    }
-
-    async function Ping() {
-        let pingUrl = url +"Ping"
-        let response = await fetch(pingUrl).then((response) => response.status);
-        if (response !== 200) {
-            return "Not online"
+    document.querySelector(".resetButton").addEventListener("click", () => {
+        currentPlayer.O.innerHTML = "O"
+        currentPlayer.X.innerHTML = "X"
+        currentPlayer.O.classList.remove("underline");
+        currentPlayer.X.classList.remove("underline");
+        cellStatus = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+        gameState = 0;
+        drawCounter = 0;
+        player = 0;
+        cellList.forEach(row => {
+            row.children[0].innerHTML = "";
+        })
+        for (let i = 0; i < 9; i++) {
+            cellList[i].classList.add("pointer");
         }
-    }
+        currentPlayer.X.classList.add("underline");
+        currentPlayer.O.classList.remove("underline");
+    })
+
 }
