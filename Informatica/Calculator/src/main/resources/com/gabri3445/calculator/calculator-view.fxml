@@ -5,114 +5,138 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" spacing="5.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gabri3445.calculator.controllers.CalculatorController">
+<VBox fx:id="root" alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gabri3445.calculator.controllers.CalculatorController">
     <HBox alignment="CENTER_RIGHT">
         <children>
 
-            <Label fx:id="screen" alignment="CENTER_RIGHT" contentDisplay="CENTER" text="20" textAlignment="RIGHT">
+            <Label fx:id="screen" alignment="CENTER_RIGHT" contentDisplay="CENTER" text="621" textAlignment="RIGHT">
                 <font>
-                    <Font name="JetBrains Mono Regular" size="60.0" />
+                    <Font name="Verdana" size="60.0" />
                 </font>
             </Label>
         </children>
     </HBox>
+   <TilePane hgap="10.0" layoutX="25.0" layoutY="123.0" prefColumns="4" prefRows="1" prefTileHeight="50.0" prefTileWidth="60.0">
+      <children>
+         <Button fx:id="radical" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="√ ">
+            <font>
+               <Font name="Verdana" />
+            </font>
+         </Button>
+         <Button fx:id="power" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="^">
+            <font>
+               <Font name="Verdana" />
+            </font>
+         </Button>
+         <Button fx:id="deleteAll" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="CE">
+            <font>
+               <Font name="Verdana" />
+            </font>
+         </Button>
+         <Button fx:id="deleteOne" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="C">
+            <font>
+               <Font name="Verdana" />
+            </font>
+         </Button>
+      </children>
+   </TilePane>
     <TilePane hgap="10.0" prefColumns="4" prefRows="1" prefTileHeight="50.0" prefTileWidth="60.0">
         <children>
-            <Button mnemonicParsing="false" fx:id="seven" prefHeight="80.0" prefWidth="80.0" text="7">
+            <Button fx:id="seven" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="7">
                 <font>
-                    <Font name="JetBrains Mono Regular" />
+                    <Font name="Verdana" />
                 </font>
             </Button>
-            <Button mnemonicParsing="false" fx:id="eight" prefHeight="80.0" prefWidth="80.0" text="8">
+            <Button fx:id="eight" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="8">
                 <font>
-                    <Font name="JetBrains Mono Regular" />
+                    <Font name="Verdana" />
                 </font>
             </Button>
-            <Button mnemonicParsing="false" fx:id="nine" prefHeight="80.0" prefWidth="80.0" text="9">
+            <Button fx:id="nine" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="9">
                 <font>
-                    <Font name="JetBrains Mono Regular" />
+                    <Font name="Verdana" />
                 </font>
             </Button>
-            <Button mnemonicParsing="false" fx:id="divide" prefHeight="80.0" prefWidth="80.0" text="/">
+            <Button fx:id="divide" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="/">
                 <font>
-                    <Font name="JetBrains Mono Regular" />
+                    <Font name="Verdana" />
                 </font>
             </Button>
         </children>
     </TilePane>
     <TilePane hgap="10.0" prefColumns="4" prefRows="1" prefTileHeight="50.0" prefTileWidth="60.0">
         <children>
-            <Button mnemonicParsing="false" fx:id="four" prefHeight="80.0" prefWidth="80.0" text="4">
+            <Button fx:id="four" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="4">
                 <font>
-                    <Font name="JetBrains Mono Regular" />
+                    <Font name="Verdana" />
                 </font>
             </Button>
-            <Button mnemonicParsing="false"  fx:id="five" prefHeight="80.0" prefWidth="80.0" text="5">
+            <Button fx:id="five" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="5">
                 <font>
-                    <Font name="JetBrains Mono Regular" />
+                    <Font name="Verdana" />
                 </font>
             </Button>
-            <Button mnemonicParsing="false" fx:id="six" prefHeight="80.0" prefWidth="80.0" text="6">
+            <Button fx:id="six" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="6">
                 <font>
-                    <Font name="JetBrains Mono Regular" />
+                    <Font name="Verdana" />
                 </font>
             </Button>
-            <Button mnemonicParsing="false" fx:id="multiply" prefHeight="80.0" prefWidth="80.0" text="*">
+            <Button fx:id="multiply" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="*">
                 <font>
-                    <Font name="JetBrains Mono Regular" />
-                </font>
-            </Button>
-        </children>
-    </TilePane>
-    <TilePane hgap="10.0" prefColumns="4"  prefRows="1" prefTileHeight="50.0" prefTileWidth="60.0">
-        <children>
-            <Button mnemonicParsing="false" fx:id="one" prefHeight="80.0" prefWidth="80.0" text="1">
-                <font>
-                    <Font name="JetBrains Mono Regular" />
-                </font>
-            </Button>
-            <Button mnemonicParsing="false" fx:id="two" prefHeight="80.0" prefWidth="80.0" text="2">
-                <font>
-                    <Font name="JetBrains Mono Regular" />
-                </font>
-            </Button>
-            <Button mnemonicParsing="false" fx:id="three" prefHeight="80.0" prefWidth="80.0" text="3">
-                <font>
-                    <Font name="JetBrains Mono Regular" />
-                </font>
-            </Button>
-            <Button mnemonicParsing="false" fx:id="subtract" prefHeight="80.0" prefWidth="80.0" text="-">
-                <font>
-                    <Font name="JetBrains Mono Regular" />
+                    <Font name="Verdana" />
                 </font>
             </Button>
         </children>
     </TilePane>
     <TilePane hgap="10.0" prefColumns="4" prefRows="1" prefTileHeight="50.0" prefTileWidth="60.0">
         <children>
-            <Button mnemonicParsing="false" fx:id="decimal" prefHeight="80.0" prefWidth="80.0" text=".">
+            <Button fx:id="one" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="1">
                 <font>
-                    <Font name="JetBrains Mono Regular" />
+                    <Font name="Verdana" />
                 </font>
             </Button>
-            <Button mnemonicParsing="false"  fx:id="zero" prefHeight="80.0" prefWidth="80.0" text="0">
+            <Button fx:id="two" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="2">
                 <font>
-                    <Font name="JetBrains Mono Regular" />
+                    <Font name="Verdana" />
                 </font>
             </Button>
-            <Button mnemonicParsing="false" fx:id="equal" prefHeight="80.0" prefWidth="80.0" text="=">
+            <Button fx:id="three" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="3">
                 <font>
-                    <Font name="JetBrains Mono Regular" />
+                    <Font name="Verdana" />
                 </font>
             </Button>
-            <Button mnemonicParsing="false" fx:id="addition" prefHeight="80.0" prefWidth="80.0" text="+">
+            <Button fx:id="subtract" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="-">
                 <font>
-                    <Font name="JetBrains Mono Regular" />
+                    <Font name="Verdana" />
+                </font>
+            </Button>
+        </children>
+    </TilePane>
+    <TilePane hgap="10.0" prefColumns="4" prefRows="1" prefTileHeight="50.0" prefTileWidth="60.0">
+        <children>
+            <Button fx:id="decimal" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text=".">
+                <font>
+                    <Font name="Verdana" />
+                </font>
+            </Button>
+            <Button fx:id="zero" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="0">
+                <font>
+                    <Font name="Verdana" />
+                </font>
+            </Button>
+            <Button fx:id="equal" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="=">
+                <font>
+                    <Font name="Verdana" />
+                </font>
+            </Button>
+            <Button fx:id="addition" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="+">
+                <font>
+                    <Font name="Verdana" />
                 </font>
             </Button>
         </children>
     </TilePane>
     <padding>
-        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
     </padding>
 </VBox>
