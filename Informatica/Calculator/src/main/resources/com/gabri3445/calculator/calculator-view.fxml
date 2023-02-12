@@ -6,17 +6,17 @@
 <?import javafx.scene.text.*?>
 
 <VBox fx:id="root" alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gabri3445.calculator.controllers.CalculatorController">
-    <HBox alignment="CENTER_RIGHT" style="-fx-border-color: black; -fx-border-insets: 0;">
+    <HBox alignment="CENTER_RIGHT" prefHeight="80.0" prefWidth="369.0" style="-fx-border-color: black; -fx-border-insets: 0;">
         <children>
 
-            <Label fx:id="screen" alignment="CENTER_RIGHT" contentDisplay="CENTER" text="621" textAlignment="RIGHT">
+            <Label fx:id="screen" alignment="CENTER_RIGHT" contentDisplay="CENTER" textAlignment="RIGHT">
                 <font>
                     <Font name="Verdana" size="60.0" />
                 </font>
             </Label>
         </children>
     </HBox>
-   <TilePane hgap="10.0" layoutX="25.0" layoutY="123.0" prefColumns="4" prefRows="1" prefTileHeight="50.0" prefTileWidth="60.0">
+   <TilePane alignment="TOP_CENTER" hgap="10.0" layoutX="25.0" layoutY="123.0" prefColumns="4" prefRows="1" prefTileHeight="50.0" prefTileWidth="60.0">
       <children>
          <Button fx:id="radical" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="√ ">
             <font>
@@ -40,7 +40,7 @@
          </Button>
       </children>
    </TilePane>
-    <TilePane hgap="10.0" prefColumns="4" prefRows="1" prefTileHeight="50.0" prefTileWidth="60.0">
+    <TilePane alignment="TOP_CENTER" hgap="10.0" prefColumns="4" prefRows="1" prefTileHeight="50.0" prefTileWidth="60.0">
         <children>
             <Button fx:id="seven" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="7">
                 <font>
@@ -64,7 +64,7 @@
             </Button>
         </children>
     </TilePane>
-    <TilePane hgap="10.0" prefColumns="4" prefRows="1" prefTileHeight="50.0" prefTileWidth="60.0">
+    <TilePane alignment="TOP_CENTER" hgap="10.0" prefColumns="4" prefRows="1" prefTileHeight="50.0" prefTileWidth="60.0">
         <children>
             <Button fx:id="four" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="4">
                 <font>
@@ -88,7 +88,7 @@
             </Button>
         </children>
     </TilePane>
-    <TilePane hgap="10.0" prefColumns="4" prefRows="1" prefTileHeight="50.0" prefTileWidth="60.0">
+    <TilePane alignment="CENTER" hgap="10.0" prefColumns="4" prefRows="1" prefTileHeight="50.0" prefTileWidth="60.0">
         <children>
             <Button fx:id="one" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="1">
                 <font>
@@ -112,7 +112,7 @@
             </Button>
         </children>
     </TilePane>
-    <TilePane hgap="10.0" prefColumns="4" prefRows="1" prefTileHeight="50.0" prefTileWidth="60.0">
+    <TilePane alignment="CENTER" hgap="10.0" prefColumns="4" prefRows="1" prefTileHeight="50.0" prefTileWidth="60.0">
         <children>
             <Button fx:id="decimal" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text=".">
                 <font>

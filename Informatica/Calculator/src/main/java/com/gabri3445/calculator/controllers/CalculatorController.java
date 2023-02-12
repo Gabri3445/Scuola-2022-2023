@@ -60,7 +60,6 @@ public class CalculatorController {
     @FXML
     private VBox root;
 
-    // TODO add a delete all button and delete one button. Maybe on the bottom row
 
     private CalculatorModel calculatorModel;
 
@@ -98,16 +97,19 @@ public class CalculatorController {
             button.setOnAction(event -> {
                 Button clickedButton = (Button) event.getSource();
                 System.out.println(clickedButton.getText());
+                updateData(calculatorModel.handleButton(clickedButton.getText()));
             });
         }
+
         root.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent) {
+                // TODO
                 System.out.println(keyEvent.getCode());
             }
         });
     }
-    private void updateData(String screen) {
+    public void updateData(String screen) {
         this.screen.setText(screen);
     }
 }

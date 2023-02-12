@@ -13,6 +13,7 @@ public class CalculatorApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(CalculatorApplication.class.getResource("calculator-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Calculator");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
