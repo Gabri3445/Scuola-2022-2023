@@ -105,6 +105,7 @@ class Operation {
         this.secondNumber = secondNumber;
         this.operator = operator;
     }
+
     public Operation(double firstNumber, Operator operator) {
         this.firstNumber = firstNumber;
         this.secondNumber = 2;

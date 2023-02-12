@@ -1,13 +1,11 @@
 package com.gabri3445.calculator.controllers;
 
 import com.gabri3445.calculator.models.CalculatorModel;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
@@ -109,6 +107,7 @@ public class CalculatorController {
             }
         });
     }
+
     public void updateData(String screen) {
         this.screen.setText(screen);
     }
