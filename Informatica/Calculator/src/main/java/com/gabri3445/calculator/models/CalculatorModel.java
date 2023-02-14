@@ -3,6 +3,7 @@ package com.gabri3445.calculator.models;
 import javafx.scene.control.Alert;
 
 import java.util.Objects;
+import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,7 +19,8 @@ public class CalculatorModel {
     public String handleButton(String symbol) {
         final String symbolRegex = "[+\\-*/^√]";
         final Pattern pattern = Pattern.compile(symbolRegex);
-        final Matcher matcher = pattern.matcher(symbol);
+        final Matcher displayMatcher = pattern.matcher(displayExpression);
+        final Matcher symbolMatcher = pattern.matcher(symbol);
         // Check for equal, if so execute the operation
         if (Objects.equals(symbol, "=")) {
             if (expression.length() > 2) {
@@ -26,18 +28,17 @@ public class CalculatorModel {
                 expression = displayExpression;
             }
             // Branch for symbol
-        } else if (matcher.find()) {
+        } else if (symbolMatcher.find()) {
             // If there is already a symbol or the display is empty do nothing, otherwise add the symbol to the expression
-            final Pattern pattern1 = Pattern.compile(symbolRegex);
-            final Matcher matcher1 = pattern1.matcher(displayExpression);
-            if (!matcher1.find() && displayExpression.length() != 0) {
+
+            if (!displayMatcher.find() && displayExpression.length() != 0) {
                 displayExpression = symbol;
                 expression += " " + symbol + " ";
             }
             // Branch for numbers
         } else if (symbol.matches("\\d")) {
             // If there is a symbol on the screen reset the display
-            if (displayExpression.matches(symbolRegex)) {
+            if (displayMatcher.find()) {
                 displayExpression = "";
             }
             expression += symbol;
@@ -62,77 +63,61 @@ public class CalculatorModel {
         }
         return displayExpression;
     }
-
-    // TODO implement just one operation, look into more operations later
-    public String executeOperation() {
-        String[] tokens = expression.split("\\s");
-        // Temporary
-        if (tokens.length > 3) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Multiple operations not supported");
-            alert.show();
-            return "Giglo";
+public String executeOperation() {
+    String[] tokens = expression.split("\\s");
+    Stack<Double> numbers = new Stack<>();
+    Stack<Character> operators = new Stack<>();
+    for (String token : tokens) {
+        if (token.matches("\\d+\\.?\\d*")) {
+            numbers.push(Double.parseDouble(token));
+        } else if (isOperator(token.charAt(0))) {
+            // If the operator has precedence over the current operator, push onto the numbers stack the operation result and pop the two numbers and the operator
+            while (!operators.empty() && hasPrecedence(token.charAt(0), operators.peek())) {
+                numbers.push(applyOperation(numbers.pop(), numbers.pop(), operators.pop()));
+            }
+            operators.push(token.charAt(0));
         }
-        double firstNumber = Double.parseDouble(tokens[0]);
-        Operator operator = switch (tokens[1]) {
-            case "+" -> Operator.Addition;
-            case "-" -> Operator.Subtraction;
-            case "*" -> Operator.Multiplication;
-            case "/" -> Operator.Division;
-            case "^" -> Operator.Power;
-            case "√" -> Operator.Radical;
-            default -> null;
-        };
-        if (tokens.length == 3) {
-            double secondNumber = Double.parseDouble(tokens[2]);
-            Operation operation = new Operation(firstNumber, secondNumber, operator);
-            return String.valueOf(operation.execute());
-        }
-        if (operator == Operator.Power || operator == Operator.Radical) {
-            Operation operation = new Operation(firstNumber, operator);
-            return String.valueOf(operation.execute());
-        }
-        return "NaN";
     }
+    while (!operators.empty()) {
+        // Perform any last operations
+        numbers.push(applyOperation(numbers.pop(), numbers.pop(), operators.pop()));
+    }
+    return String.valueOf(numbers.pop());
 }
 
-class Operation {
-    private final double firstNumber;
-    private final double secondNumber;
-    private final Operator operator;
-
-    public Operation(double firstNumber, double secondNumber, Operator operator) {
-        this.firstNumber = firstNumber;
-        this.secondNumber = secondNumber;
-        this.operator = operator;
+    private  boolean isOperator(char c) {
+        return c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == '√';
     }
 
-    public Operation(double firstNumber, Operator operator) {
-        this.firstNumber = firstNumber;
-        this.secondNumber = 2;
-        this.operator = operator;
-    }
-
-    public double execute() {
-        switch (operator) {
-            case Addition -> {
-                return firstNumber + secondNumber;
-            }
-            case Subtraction -> {
-                return firstNumber - secondNumber;
-            }
-            case Multiplication -> {
-                return firstNumber * secondNumber;
-            }
-            case Division -> {
-                return firstNumber / secondNumber;
-            }
-            case Power -> {
-                return Math.pow(firstNumber, secondNumber);
-            }
-            case Radical -> {
-                return Math.pow(firstNumber, 1 / secondNumber);
-            }
+    private boolean hasPrecedence(char op1, char op2) {
+        if ((op1 == '^' || op1 == '√') && (op2 == '*' || op2 == '/')) {
+            return false;
         }
-        return 0;
+        if ((op1 == '*' || op1 == '/') && (op2 == '+' || op2 == '-')) {
+            return false;
+        }
+        return true;
+    }
+
+    private  double applyOperation(double a, double b, char operator) {
+        switch (operator) {
+            case '+':
+                return a + b;
+            case '-':
+                return b - a;
+            case '*':
+                return a * b;
+            case '/':
+                if (a == 0) {
+                    throw new ArithmeticException("Cannot divide by zero");
+                }
+                return b / a;
+            case '^':
+                return Math.pow(b, a);
+            case '√':
+                return Math.sqrt(b);
+            default:
+                throw new IllegalArgumentException("Invalid operator: " + operator);
+        }
     }
 }
