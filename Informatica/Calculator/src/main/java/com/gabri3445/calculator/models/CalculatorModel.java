@@ -1,7 +1,5 @@
 package com.gabri3445.calculator.models;
 
-import javafx.scene.control.Alert;
-
 import java.util.Objects;
 import java.util.Stack;
 import java.util.regex.Matcher;
@@ -17,6 +15,7 @@ public class CalculatorModel {
 
 
     public String handleButton(String symbol) {
+        // symbol.match() does not work for √, so need to use this for symbol checking
         final String symbolRegex = "[+\\-*/^√]";
         final Pattern pattern = Pattern.compile(symbolRegex);
         final Matcher displayMatcher = pattern.matcher(displayExpression);
@@ -63,29 +62,31 @@ public class CalculatorModel {
         }
         return displayExpression;
     }
-public String executeOperation() {
-    String[] tokens = expression.split("\\s");
-    Stack<Double> numbers = new Stack<>();
-    Stack<Character> operators = new Stack<>();
-    for (String token : tokens) {
-        if (token.matches("\\d+\\.?\\d*")) {
-            numbers.push(Double.parseDouble(token));
-        } else if (isOperator(token.charAt(0))) {
-            // If the operator has precedence over the current operator, push onto the numbers stack the operation result and pop the two numbers and the operator
-            while (!operators.empty() && hasPrecedence(token.charAt(0), operators.peek())) {
-                numbers.push(applyOperation(numbers.pop(), numbers.pop(), operators.pop()));
-            }
-            operators.push(token.charAt(0));
-        }
-    }
-    while (!operators.empty()) {
-        // Perform any last operations
-        numbers.push(applyOperation(numbers.pop(), numbers.pop(), operators.pop()));
-    }
-    return String.valueOf(numbers.pop());
-}
 
-    private  boolean isOperator(char c) {
+    // Might work, might not work. Who knows TODO unit tests maybe?
+    public String executeOperation() {
+        String[] tokens = expression.split("\\s");
+        Stack<Double> numbers = new Stack<>();
+        Stack<Character> operators = new Stack<>();
+        for (String token : tokens) {
+            if (token.matches("\\d+\\.?\\d*")) {
+                numbers.push(Double.parseDouble(token));
+            } else if (isOperator(token.charAt(0))) {
+                // If the operator has precedence over the current operator, push onto the numbers stack the operation result and pop the two numbers and the operator
+                while (!operators.empty() && hasPrecedence(token.charAt(0), operators.peek())) {
+                    numbers.push(applyOperation(numbers.pop(), numbers.pop(), operators.pop()));
+                }
+                operators.push(token.charAt(0));
+            }
+        }
+        while (!operators.empty()) {
+            // Perform any last operations
+            numbers.push(applyOperation(numbers.pop(), numbers.pop(), operators.pop()));
+        }
+        return String.valueOf(numbers.pop());
+    }
+
+    private boolean isOperator(char c) {
         return c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == '√';
     }
 
@@ -99,7 +100,7 @@ public String executeOperation() {
         return true;
     }
 
-    private  double applyOperation(double a, double b, char operator) {
+    private double applyOperation(double a, double b, char operator) {
         switch (operator) {
             case '+':
                 return a + b;
@@ -115,7 +116,7 @@ public String executeOperation() {
             case '^':
                 return Math.pow(b, a);
             case '√':
-                return Math.sqrt(b);
+                return Math.pow(b, 1/a);
             default:
                 throw new IllegalArgumentException("Invalid operator: " + operator);
         }
