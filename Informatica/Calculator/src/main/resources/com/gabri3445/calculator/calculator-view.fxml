@@ -5,7 +5,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" fx:id="root" alignment="CENTER" spacing="20.0"
-      xmlns="http://javafx.com/javafx/11.0.14-internal" fx:controller="com.gabri3445.calculator.controllers.CalculatorController">
+      xmlns="http://javafx.com/javafx/11.0.14-internal"
+      fx:controller="com.gabri3445.calculator.controllers.CalculatorController">
     <HBox alignment="CENTER_RIGHT" prefHeight="80.0" prefWidth="369.0"
           style="-fx-border-color: black; -fx-border-insets: 0;">
         <children>
@@ -20,7 +21,7 @@
     <TilePane alignment="TOP_CENTER" hgap="10.0" layoutX="25.0" layoutY="123.0" prefColumns="4" prefRows="1"
               prefTileHeight="50.0" prefTileWidth="60.0">
         <children>
-            <Button fx:id="radical" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="√ ">
+            <Button fx:id="radical" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="√">
                 <font>
                     <Font name="Verdana"/>
                 </font>
