@@ -112,7 +112,7 @@ public class CalculatorModel {
             case '^':
                 return Math.pow(b, a);
             case '√':
-                return Math.pow(b, 1/a);
+                return Math.pow(b, 1 / a);
             default:
                 throw new IllegalArgumentException("Invalid operator: " + operator);
         }
