@@ -5,10 +5,6 @@ import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-enum Operator {
-    Addition, Subtraction, Multiplication, Division, Radical, Power
-}
-
 public class CalculatorModel {
     private String expression = "";
     private String displayExpression = "";
