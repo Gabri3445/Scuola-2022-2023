@@ -29,7 +29,7 @@ public class Main {
         System.out.println("Enter 0 for local, 1 for remote");
         choice = scanner.nextInt();
         switch (choice) {
-            case 0 -> url = "http://localhost:20000/bank/";
+            case 0 -> url = "http://localhost:20000/Bank/";
             case 1 -> url = "http://gabri3445.ddns.net/api/bank/";
         }
         do {
@@ -90,7 +90,6 @@ public class Main {
     }
 
     private static void login(String url, HttpClient httpClient) throws IOException, InterruptedException {
-        int responseCode;
         String tempUrl = url;
         url += "login";
         int choice;
