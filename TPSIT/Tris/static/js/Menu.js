@@ -3,10 +3,12 @@ let menu = document.querySelector("#menu");
 let body = document.body;
 
 buttons.forEach(button => {
-    button.addEventListener("click", modeMenu)
+    button.addEventListener("click", () => {
+        modeMenu(button)
+    })
 })
 
-function modeMenu() {
+function modeMenu(button) {
     let choice = parseInt(button.dataset.choice);
     switch (choice) {
         case 0:
@@ -21,6 +23,7 @@ function modeMenu() {
             break;
         case 2:
             //pvpMenu();
+            alert("WIP")
             break;
     }
 }
