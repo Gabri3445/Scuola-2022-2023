@@ -19,7 +19,7 @@ public class Employee extends Person {
     @Override
     public String getPersonalData() {
         return super.getPersonalData() + "\n" +
-                "Hired on" + hireDate + "\n" +
+                "Hired on: " + hireDate + "\n" +
                 "Salary: " + salary.toString();
     }
 
