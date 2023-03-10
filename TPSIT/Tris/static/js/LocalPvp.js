@@ -81,7 +81,10 @@ function localPvp() {
                 }
                 if (drawCounter === 9) {
                     gameState = 3;
-                    console.log("barilraw")
+                    currentPlayer.X.innerHTML = "DRAW"
+                    currentPlayer.O.innerHTML = "DRAW"
+                    currentPlayer.O.classList.remove("underline");
+                    currentPlayer.X.classList.remove("underline");
                 }
             }
         })
