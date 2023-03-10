@@ -216,7 +216,7 @@ Response:
 5 is O won
 6 is X Won
  */
-async function CheckWin(guid) {
+async function GetStatus(guid) {
     let checkUrl = url + "CheckWin?guid=" + guid;
     let response = await fetch(checkUrl);
     let statusCode = response.status;
@@ -239,4 +239,22 @@ async function Ping() {
         return "Not online"
     }
     return "Online"
+}
+
+async function Reset(guid) {
+    let resetUrl = url + "Reset"
+    let data = {
+        guid: guid
+    }
+    let response = await putData(resetUrl, data);
+    let statusCode = response.status;
+    if (statusCode === 200) {
+        return response.json();
+    }
+    if (statusCode === 400) {
+        return "Invalid UUID or Invalid Request"
+    }
+    if (statusCode === 404) {
+        return "Match not found"
+    }
 }
