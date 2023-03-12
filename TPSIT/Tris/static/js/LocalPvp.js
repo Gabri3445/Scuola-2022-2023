@@ -45,7 +45,7 @@ function localPvp() {
                         currentPlayer.O.classList.add("underline");
                         let cell = event.target.classList.item(0)
                         cellStatus[Math.floor(cell / 3)][cell % 3] = 1
-                        console.log(cellStatus[parseInt(event.target.classList.item(0))])
+                        console.log(Math.floor(cell / 3) + " " + cell % 3)
                         event.target.children[0].innerHTML = "X";
                         event.target.classList.remove("pointer");
                         player = 1;
