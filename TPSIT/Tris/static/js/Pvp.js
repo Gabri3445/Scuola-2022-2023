@@ -6,15 +6,18 @@ async function Pvp(pl1Username, pl2Username, guid, isPlayerOne) {
     }
 
     let playerSymbol = "";
+    let otherPlayerSymbol = "";
     let playerNumber = null;
 
     if (isPlayerOne){
         playerNumber = 1;
         playerSymbol = "X"
+        otherPlayerSymbol = "O"
     }
     else {
         playerNumber = 2;
         playerSymbol = "O"
+        otherPlayerSymbol = "X"
     }
 
     /*
@@ -81,13 +84,13 @@ async function Pvp(pl1Username, pl2Username, guid, isPlayerOne) {
 
                         event.target.children[0].innerHTML = playerSymbol;
                         event.target.classList.remove("pointer");
-                        
+
                         let data = {
                             guid: guid,
                             player: isPlayerOne ? 1 : 2,
                             location: {
-                                x: cell % 3,
-                                y : Math.floor(cell / 3)
+                                x: Math.floor(cell / 3),
+                                y : cell % 3
                             }
                         }
                         await MakeMove(data.guid, data.player, data.location);
@@ -95,7 +98,7 @@ async function Pvp(pl1Username, pl2Username, guid, isPlayerOne) {
                         const statusResponse = await GetStatus(guid);
                         const matchStatus = statusResponse.matchStatus;
                         // Check for win
-                        if (matchStatus === 5 && isPlayerOne || matchStatus === 6 && !isPlayerOne) {
+                        /*if (matchStatus === 5 && isPlayerOne || matchStatus === 6 && !isPlayerOne) {
                             if (isPlayerOne) {
                                 currentPlayer.X.innerHTML = pl1Username + " WON"
                                 score.X++;
@@ -105,7 +108,7 @@ async function Pvp(pl1Username, pl2Username, guid, isPlayerOne) {
                             }
                             allowReset = true;
                             document.querySelector("#score").innerHTML = `${score.X} - ${score.O}`
-                        }
+                        }*/
                     }
                 }
 
@@ -120,7 +123,60 @@ async function Pvp(pl1Username, pl2Username, guid, isPlayerOne) {
         })
     })
 
-    //TODO add a infinite loop checking for the player 2 move and if player 2 won
+    // This repeats asyncLoop every second without blocking the main thread
+    async function mainLoop() {
+        await asyncLoop();
+        // This makes sure the function ends before executing it again,
+        // then calls it again every second
+        setTimeout(mainLoop, 1000)
+    }
+    await mainLoop();
+    async function asyncLoop() {
+        let boardStatus = await GetBoardStatus(guid);
+
+        let diff = findFirstDifference(boardStatus, cellStatus);
+        console.log(diff);
+
+        if (diff != null) {
+            cellStatus = boardStatus;
+            let cell = cellList[(diff.y * 3) + diff.x];
+            cell.children[0].innerHTML = otherPlayerSymbol;
+            cell.classList.remove("pointer");
+        }
+
+        const statusResponse = await GetStatus(guid);
+        const matchStatus = statusResponse.matchStatus;
+        if (matchStatus === 5 || matchStatus === 6) { // Branch for win
+            if (matchStatus === 5) {
+                currentPlayer.O.innerHTML = pl2Username + " WON"
+                score.O++;
+            } else {
+                currentPlayer.X.innerHTML = pl1Username + " WON"
+                score.X++;
+            }
+            allowReset = true;
+            document.querySelector("#score").innerHTML = `${score.X} - ${score.O}`
+        }
+        if (matchStatus === 4) { // Branch for draw
+            currentPlayer.X.innerHTML = "DRAW"
+            currentPlayer.O.innerHTML = "DRAW"
+            currentPlayer.O.classList.remove("underline");
+            currentPlayer.X.classList.remove("underline");
+            allowReset = true;
+        }
+    }
+
+    function findFirstDifference(arr1, arr2) {
+        for (let y = 0; y < arr1.length; y++) {
+            for (let x = 0; x < arr1[y].length; x++) {
+                if (arr1[y][x] !== arr2[y][x]) {
+                    return {x, y}; // found first difference, return coordinates
+                }
+            }
+        }
+        return null; // arrays are identical
+    }
+
 
     /*
     function checkForVictory(board) {
