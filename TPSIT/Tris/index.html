@@ -12,11 +12,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
 </head>
 <body class="darken">
-<div id="menu">
+<div class="menu" id="menu">
     <h3>Choose an option:</h3>
     <button class="menuButton" data-choice="0">Local PVP</button>
     <button class="menuButton" data-choice="1">Local CPU</button>
     <button class="menuButton" data-choice="2">Multiplayer</button>
+</div>
+<div class="menu hidden" id="matchMenu">
+    <h3>Choose an option:</h3>
+    <button class="menuButton" data-choice="0">Create a match</button>
+    <button class="menuButton" data-choice="1">Join a match</button>
+</div>
+<div class="menu hidden" id="createMenu">
+    <h3>Enter your username: </h3>
+    <input type="text" name="username" placeholder="Username" id="pl1Username">
+    <button class="menuButton">Create a match</button>
+</div>
+<div class="menu hidden" id="joinMenu">
+    <h3>Enter your username and guid: </h3>
+    <input type="text" name="username" placeholder="Username" id="pl2Username">
+    <input type="text" name="uuid" placeholder="Guid" id="guid">
+    <button class="menuButton">Join a match</button>
 </div>
 <div class="container flex">
     <h1 class="title">Tic-Tac-Toe</h1>
