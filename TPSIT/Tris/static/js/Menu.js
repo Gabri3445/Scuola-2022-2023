@@ -1,4 +1,4 @@
-let buttons = document.querySelectorAll( "#menu .menuButton");
+let buttons = document.querySelectorAll("#menu .menuButton");
 let menu = document.querySelector("#menu");
 let matchMenu = document.querySelector("#matchMenu");
 let createMenu = document.querySelector("#createMenu");
