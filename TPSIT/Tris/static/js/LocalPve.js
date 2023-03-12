@@ -56,13 +56,13 @@ function localPve() {
                             score.X++;
                             gameState = 1;
                             document.querySelector("#score").innerHTML = `${score.X} - ${score.O}`
-                        }
-                        else {
+                        } else {
                             let bestMove = minimax(cellStatus, 0, true).move;
                             console.log(bestMove)
                             let row = Math.floor(bestMove / 3);
                             let col = bestMove % 3;
                             cellStatus[row][col] = 2;
+
                             function getCell(index) {
                                 for (let i = 0; i < cellList.length; i++) {
                                     if (parseInt(cellList[i].dataset.index) === index) {
@@ -71,6 +71,7 @@ function localPve() {
                                 }
                                 return null;
                             }
+
                             let targetCell = getCell(bestMove);
                             targetCell.children[0].innerHTML = "O";
                             targetCell.classList.remove("pointer");
@@ -188,7 +189,6 @@ function localPve() {
     }
 
 
-
     function checkForWin(board) {
         // check rows
         for (let i = 0; i < 3; i++) {
@@ -212,7 +212,6 @@ function localPve() {
         // no winner
         return 0;
     }
-
 
 
     document.querySelector(".resetButton").addEventListener("click", () => {

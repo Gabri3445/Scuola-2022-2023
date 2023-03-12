@@ -140,7 +140,6 @@ function localPvp() {
     }
 
 
-
     document.querySelector(".resetButton").addEventListener("click", () => {
         currentPlayer.O.innerHTML = "O"
         currentPlayer.X.innerHTML = "X"

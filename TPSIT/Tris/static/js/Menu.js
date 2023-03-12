@@ -36,9 +36,10 @@ function pvpMenu() {
     buttons = document.querySelectorAll(".menuButton");
     buttons.forEach(button => {
         button.removeEventListener("click", modeMenu);
-        button.addEventListener("click", );
+        button.addEventListener("click",);
     })
 }
+
 /*
 function createMatch() {
     menu.innerHTML = `

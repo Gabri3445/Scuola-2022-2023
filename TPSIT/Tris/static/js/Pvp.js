@@ -9,12 +9,11 @@ async function Pvp(pl1Username, pl2Username, guid, isPlayerOne) {
     let otherPlayerSymbol = "";
     let playerNumber = null;
 
-    if (isPlayerOne){
+    if (isPlayerOne) {
         playerNumber = 1;
         playerSymbol = "X"
         otherPlayerSymbol = "O"
-    }
-    else {
+    } else {
         playerNumber = 2;
         playerSymbol = "O"
         otherPlayerSymbol = "X"
@@ -77,7 +76,6 @@ async function Pvp(pl1Username, pl2Username, guid, isPlayerOne) {
                         }
 
 
-
                         let cell = event.target.classList.item(0)
                         cellStatus[Math.floor(cell / 3)][cell % 3] = playerNumber
                         console.log(cellStatus[parseInt(event.target.classList.item(0))])
@@ -90,7 +88,7 @@ async function Pvp(pl1Username, pl2Username, guid, isPlayerOne) {
                             player: isPlayerOne ? 1 : 2,
                             location: {
                                 x: Math.floor(cell / 3),
-                                y : cell % 3
+                                y: cell % 3
                             }
                         }
                         await MakeMove(data.guid, data.player, data.location);
@@ -130,7 +128,9 @@ async function Pvp(pl1Username, pl2Username, guid, isPlayerOne) {
         // then calls it again every second
         setTimeout(mainLoop, 1000)
     }
+
     await mainLoop();
+
     async function asyncLoop() {
         let boardStatus = await GetBoardStatus(guid);
 
