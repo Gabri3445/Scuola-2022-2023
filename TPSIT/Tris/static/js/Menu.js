@@ -73,27 +73,3 @@ function matchMenuFunc(button) {
             break;
     }
 }
-
-/*function pvpMenu() {
-    menu.innerHTML =
-        `<h3>Multiplayer</h3>
-    <button data-choice="0" class="menuButton">Create match</button>
-    <button data-choice="1" class="menuButton">Join match</button>`
-    buttons = document.querySelectorAll(".menuButton");
-    buttons.forEach(button => {
-        button.removeEventListener("click", modeMenu);
-        button.addEventListener("click",);
-    })
-}*/
-
-/*
-function createMatch() {
-    menu.innerHTML = `
-    <h3>Multiplayer</h3>
-    <input type="text" class="username">
-    <button data-choice="1" class="menuButton">Join match</button>
-    `
-    buttons = document.querySelectorAll(".menuButton");
-    let input = document.querySelector(".username");
-    buttons.addEventListener("click", )
-}*/
