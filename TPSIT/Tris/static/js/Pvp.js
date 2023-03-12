@@ -58,7 +58,7 @@ async function Pvp(pl1Username, pl2Username, guid, isPlayerOne) {
             const statusResponse = await GetStatus(guid);
             const matchStatus = statusResponse.matchStatus;
 
-            if (matchStatus === 0) {
+            if (matchStatus === 3) {
                 const playerResponse = await GetPlayer(guid);
                 const player = playerResponse.player;
 
@@ -73,13 +73,24 @@ async function Pvp(pl1Username, pl2Username, guid, isPlayerOne) {
                             currentPlayer.X.classList.add("underline");
                         }
 
+
+
                         let cell = event.target.classList.item(0)
                         cellStatus[Math.floor(cell / 3)][cell % 3] = playerNumber
                         console.log(cellStatus[parseInt(event.target.classList.item(0))])
 
                         event.target.children[0].innerHTML = playerSymbol;
                         event.target.classList.remove("pointer");
-                        // TODO send the move
+                        
+                        let data = {
+                            guid: guid,
+                            player: isPlayerOne ? 1 : 2,
+                            location: {
+                                x: cell % 3,
+                                y : Math.floor(cell / 3)
+                            }
+                        }
+                        await MakeMove(data.guid, data.player, data.location);
 
                         const statusResponse = await GetStatus(guid);
                         const matchStatus = statusResponse.matchStatus;
@@ -175,6 +186,7 @@ async function Pvp(pl1Username, pl2Username, guid, isPlayerOne) {
             }
             currentPlayer.X.classList.add("underline");
             currentPlayer.O.classList.remove("underline");
+            Reset(guid);
         }
     })
 
