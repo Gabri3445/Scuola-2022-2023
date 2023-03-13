@@ -117,7 +117,9 @@ public class Main {
                         tempTask.isComplete = true;
                         tempTask.assignedEmployee.isAssigned = false;
                         project.checkComplete();
-                    } else
+                    } else {
+                        System.out.println("No milestones");
+                    }
                 }
                 case 4 -> {
                     project.projectDay++;
