@@ -14,7 +14,7 @@ public class Main {
             }
         };
 
-        for (Vehicle vehicle:
+        for (Vehicle vehicle :
                 vehicleList) {
             if (vehicle.isBroken()) {
                 System.out.println(vehicle.getLicensePlate());
