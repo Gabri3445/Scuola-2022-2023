@@ -32,6 +32,6 @@ public class Main {
             } else {
                 System.out.println("Out of range");
             }
-        }while (choice != vehicleList.size());
+        } while (choice != vehicleList.size());
     }
 }
