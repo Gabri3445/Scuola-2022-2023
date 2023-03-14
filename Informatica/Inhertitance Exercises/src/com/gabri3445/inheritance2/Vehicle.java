@@ -4,7 +4,7 @@ public class Vehicle {
     private final String licensePlate;
     private final String maker;
     private final String model;
-    private final boolean isBroken;
+    private boolean isBroken;
     public Vehicle(String licensePlate, String maker, String model, boolean isBroken) {
         this.licensePlate = licensePlate;
         this.maker = maker;
@@ -18,6 +18,10 @@ public class Vehicle {
 
     public String getMaker() {
         return maker;
+    }
+
+    public void setBroken(boolean broken) {
+        isBroken = broken;
     }
 
     public String getModel() {
