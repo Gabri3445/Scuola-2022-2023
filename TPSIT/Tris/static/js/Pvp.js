@@ -140,8 +140,10 @@ async function Pvp(pl1Username, pl2Username, guid, isPlayerOne) {
         if (diff != null) {
             cellStatus = boardStatus;
             let cell = cellList[(diff.y * 3) + diff.x];
-            cell.children[0].innerHTML = otherPlayerSymbol;
-            cell.classList.remove("pointer");
+            if (cell !== playerNumber) {
+                cell.children[0].innerHTML = otherPlayerSymbol;
+                cell.classList.remove("pointer");
+            }
         }
 
         const statusResponse = await GetStatus(guid);
@@ -242,6 +244,7 @@ async function Pvp(pl1Username, pl2Username, guid, isPlayerOne) {
             }
             currentPlayer.X.classList.add("underline");
             currentPlayer.O.classList.remove("underline");
+            allowReset = false;
             await Reset(guid);
         }
     })
