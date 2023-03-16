@@ -140,7 +140,7 @@ async function Pvp(pl1Username, pl2Username, guid, isPlayerOne) {
         if (diff != null) {
             cellStatus = boardStatus;
             let cell = cellList[(diff.y * 3) + diff.x];
-            if (cell !== playerNumber) {
+            if (cellStatus[(diff.y * 3) + diff.x] !== playerNumber) {
                 cell.children[0].innerHTML = otherPlayerSymbol;
                 cell.classList.remove("pointer");
             }
