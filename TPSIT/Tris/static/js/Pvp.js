@@ -138,9 +138,9 @@ async function Pvp(pl1Username, pl2Username, guid, isPlayerOne) {
         console.log(diff);
 
         if (diff != null) {
-            cellStatus = boardStatus;
-            let cell = cellList[(diff.y * 3) + diff.x];
             if (cellStatus[(diff.y * 3) + diff.x] !== playerNumber) {
+                cellStatus = boardStatus;
+                let cell = cellList[(diff.y * 3) + diff.x];
                 cell.children[0].innerHTML = otherPlayerSymbol;
                 cell.classList.remove("pointer");
             }
