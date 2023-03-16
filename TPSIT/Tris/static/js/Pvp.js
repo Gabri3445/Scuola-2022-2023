@@ -229,7 +229,7 @@ async function Pvp(pl1Username, pl2Username, guid, isPlayerOne) {
     }*/
 
 
-    document.querySelector(".resetButton").addEventListener("click", () => {
+    document.querySelector(".resetButton").addEventListener("click", async () => {
         if (allowReset) {
             currentPlayer.O.classList.remove("underline");
             currentPlayer.X.classList.remove("underline");
@@ -242,7 +242,7 @@ async function Pvp(pl1Username, pl2Username, guid, isPlayerOne) {
             }
             currentPlayer.X.classList.add("underline");
             currentPlayer.O.classList.remove("underline");
-            Reset(guid);
+            await Reset(guid);
         }
     })
 
