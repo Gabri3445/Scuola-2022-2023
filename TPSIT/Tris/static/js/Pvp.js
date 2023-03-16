@@ -132,39 +132,41 @@ async function Pvp(pl1Username, pl2Username, guid, isPlayerOne) {
     await mainLoop();
 
     async function asyncLoop() {
-        let boardStatus = await GetBoardStatus(guid);
+        if (!allowReset) {
+            let boardStatus = await GetBoardStatus(guid);
 
-        let diff = findFirstDifference(boardStatus, cellStatus);
-        console.log(diff);
+            let diff = findFirstDifference(boardStatus, cellStatus);
+            console.log(diff);
 
-        if (diff != null) {
-            if (cellStatus[(diff.y * 3) + diff.x] !== playerNumber) {
-                cellStatus = boardStatus;
-                let cell = cellList[(diff.y * 3) + diff.x];
-                cell.children[0].innerHTML = otherPlayerSymbol;
-                cell.classList.remove("pointer");
+            if (diff != null) {
+                if (cellStatus[(diff.y * 3) + diff.x] !== playerNumber) {
+                    cellStatus = boardStatus;
+                    let cell = cellList[(diff.y * 3) + diff.x];
+                    cell.children[0].innerHTML = otherPlayerSymbol;
+                    cell.classList.remove("pointer");
+                }
             }
-        }
 
-        const statusResponse = await GetStatus(guid);
-        const matchStatus = statusResponse.matchStatus;
-        if (matchStatus === 5 || matchStatus === 6) { // Branch for win
-            if (matchStatus === 5) {
-                currentPlayer.O.innerHTML = pl2Username + " WON"
-                score.O++;
-            } else {
-                currentPlayer.X.innerHTML = pl1Username + " WON"
-                score.X++;
+            const statusResponse = await GetStatus(guid);
+            const matchStatus = statusResponse.matchStatus;
+            if (matchStatus === 5 || matchStatus === 6) { // Branch for win
+                if (matchStatus === 5) {
+                    currentPlayer.O.innerHTML = pl2Username + " WON"
+                    score.O++;
+                } else {
+                    currentPlayer.X.innerHTML = pl1Username + " WON"
+                    score.X++;
+                }
+                allowReset = true;
+                document.querySelector("#score").innerHTML = `${score.X} - ${score.O}`
             }
-            allowReset = true;
-            document.querySelector("#score").innerHTML = `${score.X} - ${score.O}`
-        }
-        if (matchStatus === 4) { // Branch for draw
-            currentPlayer.X.innerHTML = "DRAW"
-            currentPlayer.O.innerHTML = "DRAW"
-            currentPlayer.O.classList.remove("underline");
-            currentPlayer.X.classList.remove("underline");
-            allowReset = true;
+            if (matchStatus === 4) { // Branch for draw
+                currentPlayer.X.innerHTML = "DRAW"
+                currentPlayer.O.innerHTML = "DRAW"
+                currentPlayer.O.classList.remove("underline");
+                currentPlayer.X.classList.remove("underline");
+                allowReset = true;
+            }
         }
     }
 
@@ -233,6 +235,7 @@ async function Pvp(pl1Username, pl2Username, guid, isPlayerOne) {
 
     document.querySelector(".resetButton").addEventListener("click", async () => {
         if (allowReset) {
+            allowReset = false;
             currentPlayer.O.classList.remove("underline");
             currentPlayer.X.classList.remove("underline");
             cellStatus = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
@@ -244,7 +247,6 @@ async function Pvp(pl1Username, pl2Username, guid, isPlayerOne) {
             }
             currentPlayer.X.classList.add("underline");
             currentPlayer.O.classList.remove("underline");
-            allowReset = false;
             await Reset(guid);
         }
     })
