@@ -1,6 +1,6 @@
-let url = "http://localhost:5258/api/TicTacToe/"
+//let url = "http://localhost:5258/api/TicTacToe/"
 
-// let url = "http://gabri3445.ddns.net/api/TicTacToe/
+let url = "http://gabri3445.ddns.net/api/TicTacToe/"
 
 async function postData(url = '', data = {}) {
     // Default options are marked with *
