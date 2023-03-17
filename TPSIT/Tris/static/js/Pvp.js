@@ -131,6 +131,8 @@ async function Pvp(pl1Username, pl2Username, guid, isPlayerOne) {
 
     await mainLoop();
 
+
+    let lastDiff;
     async function asyncLoop() {
         if (!allowReset) {
             let boardStatus = await GetBoardStatus(guid);
@@ -138,12 +140,13 @@ async function Pvp(pl1Username, pl2Username, guid, isPlayerOne) {
             let diff = findFirstDifference(boardStatus, cellStatus);
             console.log(diff);
 
-            if (diff != null) {
+            if (diff != null && diff !== lastDiff) {
                 if (cellStatus[(diff.y * 3) + diff.x] !== playerNumber) {
                     cellStatus = boardStatus;
                     let cell = cellList[(diff.y * 3) + diff.x];
                     cell.children[0].innerHTML = otherPlayerSymbol;
                     cell.classList.remove("pointer");
+                    lastDiff = diff;
                 }
             }
 
@@ -171,6 +174,9 @@ async function Pvp(pl1Username, pl2Username, guid, isPlayerOne) {
     }
 
     function findFirstDifference(arr1, arr2) {
+        if (arr2 == null) {
+            return null;
+        }
         for (let y = 0; y < arr1.length; y++) {
             for (let x = 0; x < arr1[y].length; x++) {
                 if (arr1[y][x] !== arr2[y][x]) {
@@ -247,6 +253,8 @@ async function Pvp(pl1Username, pl2Username, guid, isPlayerOne) {
             }
             currentPlayer.X.classList.add("underline");
             currentPlayer.O.classList.remove("underline");
+            currentPlayer.X.innerHTML = pl1Username;
+            currentPlayer.O.innerHTML = pl2Username;
             await Reset(guid);
         }
     })
