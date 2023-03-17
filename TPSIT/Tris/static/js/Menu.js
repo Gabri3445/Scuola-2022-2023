@@ -47,12 +47,14 @@ function matchMenuFunc(button) {
             let createButton = document.querySelector("#createMenu .menuButton");
             createButton.addEventListener("click", async () => { // Call Pvp() with true here
                 let input = document.querySelector("#pl1Username");
-                alert("WIP");
-                /*if (input.value !== "") {
-                    let guid = await CreateMatch(input.value).guid;
+                if (input.value !== "") {
+                    let createResponse = await CreateMatch(input.value);
+                    let guid = createResponse.guid;
+                    createMenu.innerHTML = "<h3>Waiting for P2</h3>" +
+                        `<span>Guid: ${guid}</span>`
                     // TODO wait for P2, see Pvp.js on how to do a loop
-
-                }*/
+                    await waitLoop(guid, input.value);
+                }
             })
             break;
         case 1:
@@ -72,4 +74,25 @@ function matchMenuFunc(button) {
             })
             break;
     }
+}
+
+async function waitLoop(guid, pl1Username) {
+    let waiting = await asyncLoop(guid);
+    if (waiting === true) {
+        // This makes sure the function ends before executing it again,
+        // then calls it again every second
+        setTimeout(waitLoop, 1000, guid, pl1Username)
+    } else {
+        createMenu.classList.add("hidden");
+        body.classList.remove("darken");
+        await Pvp(pl1Username, waiting, guid, true);
+    }
+}
+
+async function asyncLoop(guid) {
+    let checkP2Response = await CheckP2Connection(guid);
+    if (checkP2Response === "P2 not connected") {
+        return true;
+    }
+    return checkP2Response.username;
 }
