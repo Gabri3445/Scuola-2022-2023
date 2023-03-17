@@ -187,6 +187,10 @@ body.darken .third-row > div {
     transition: background-color 0.3s ease-in-out;
 }
 
+#createMenu span {
+    color: white;
+}
+
 .menu input:hover {
     background-color: white;
     color: black;
