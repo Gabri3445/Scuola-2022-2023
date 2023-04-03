@@ -22,13 +22,13 @@ public class PhoneBook {
     }
 
     public String find(String name, String surname) {
-        return Objects.requireNonNull(findContact(name, surname)).getPhoneNumber();
+        return Objects.requireNonNull(findContact(name, surname)).phoneNumber();
     }
 
     private @Nullable Contact findContact(String name, String surname) {
         for (Contact contact :
                 contacts) {
-            if (Objects.equals(contact.getName(), name) && Objects.equals(contact.getSurname(), surname)) {
+            if (Objects.equals(contact.name(), name) && Objects.equals(contact.surname(), surname)) {
                 return contact;
             }
         }
