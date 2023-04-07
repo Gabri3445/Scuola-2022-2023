@@ -6,6 +6,6 @@ public record Contact(String name, String surname, String phoneNumber) {
     public String toString() {
         return "Name: " + name + "\n" +
                 "Surname: " + surname + "\n" +
-                "Phone number: " + phoneNumber;
+                "Phone number: " + phoneNumber + "\n";
     }
 }
