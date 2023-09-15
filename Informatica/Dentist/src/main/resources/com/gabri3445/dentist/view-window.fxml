@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<HBox xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="850.0"
+      xmlns="http://javafx.com/javafx/11.0.14-internal"
+      fx:controller="com.gabri3445.dentist.controllers.ViewController">
+
+
+    <VBox>
+        <ListView fx:id="listView" prefWidth="300.0">
+        </ListView>
+    </VBox>
+
+
+    <VBox HBox.hgrow="ALWAYS">
+        <HBox>
+            <Label fx:id="patientNameLabel" text="Name: None">
+                <font>
+                    <Font size="22.0"/>
+                </font>
+                <HBox.margin>
+                    <Insets right="40.0"/>
+                </HBox.margin>
+                <padding>
+                    <Insets right="7.5"/>
+                </padding>
+            </Label>
+            <Label fx:id="patientSurnameLabel" text="Surname: None">
+                <font>
+                    <Font size="22.0"/>
+                </font>
+                <HBox.margin>
+                    <Insets right="15.0"/>
+                </HBox.margin>
+            </Label>
+        </HBox>
+        <Label fx:id="patientAgeLabel" text="Age: None">
+            <font>
+                <Font size="22.0"/>
+            </font>
+        </Label>
+
+        <HBox>
+            <Label fx:id="patientTaxIDLabel" text="TaxID: None">
+                <font>
+                    <Font size="22.0"/>
+                </font>
+                <padding>
+                    <Insets right="7.5"/>
+                </padding>
+                <HBox.margin>
+                    <Insets right="45.0"/>
+                </HBox.margin>
+            </Label>
+            <Label fx:id="patientAppDate" text="Patient App. Date: None">
+                <font>
+                    <Font size="22.0"/>
+                </font>
+                <padding>
+                    <Insets right="7.5"/>
+                </padding>
+            </Label>
+        </HBox>
+        <Label fx:id="patientIllnessLabel" text="Illness: None">
+            <font>
+                <Font size="22.0"/>
+            </font>
+        </Label>
+
+        <VBox alignment="BOTTOM_RIGHT" VBox.vgrow="ALWAYS">
+            <Button fx:id="removeButton" text="Remove">
+                <VBox.margin>
+                    <Insets bottom="15.0" right="15.0"/>
+                </VBox.margin>
+            </Button>
+        </VBox>
+    </VBox>
+
+    <HBox.margin>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+    </HBox.margin>
+</HBox>

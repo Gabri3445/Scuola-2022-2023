@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" alignment="TOP_CENTER" prefHeight="500" prefWidth="800" spacing="20.0"
+      xmlns="http://javafx.com/javafx/11.0.14-internal"
+      fx:controller="com.gabri3445.dentist.controllers.MainController">
+
+    <MenuBar>
+        <Menu text="Account">
+            <MenuItem fx:id="registerMenuItem" mnemonicParsing="false" text="Register"/>
+            <MenuItem fx:id="loginMenuItem" mnemonicParsing="false" text="Login"/>
+            <MenuItem fx:id="logoutMenuItem" mnemonicParsing="false" text="Logout"/>
+        </Menu>
+        <Menu mnemonicParsing="false" text="View">
+            <MenuItem fx:id="viewPatientsMenuItem" mnemonicParsing="false" text="View patients"/>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Create">
+            <MenuItem fx:id="createPatientMenuItem" mnemonicParsing="false" text="Create a patient"/>
+        </Menu>
+        <Menu text="Date">
+            <MenuItem fx:id="advanceDayMenuItem" text="Advance day"/>
+        </Menu>
+    </MenuBar>
+    <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+        <VBox.margin>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+        </VBox.margin>
+
+        <VBox HBox.hgrow="ALWAYS">
+            <VBox>
+                <Label text="Number of patients: ">
+                    <font>
+                        <Font size="30.0"/>
+                    </font>
+                </Label>
+                <Label fx:id="numberOfPatientsLabel" text="None">
+                    <font>
+                        <Font size="30.0"/>
+                    </font>
+                </Label>
+            </VBox>
+            <VBox>
+                <Label text="Last patient inserted: ">
+                    <font>
+                        <Font size="22.0"/>
+                    </font>
+                </Label>
+                <HBox>
+                    <Label fx:id="lastPatientNameLabel" text="Name: None">
+                        <font>
+                            <Font size="22.0"/>
+                        </font>
+                        <HBox.margin>
+                            <Insets right="40.0"/>
+                        </HBox.margin>
+                        <padding>
+                            <Insets right="7.5"/>
+                        </padding>
+                    </Label>
+                    <Label fx:id="lastPatientSurnameLabel" text="Surname: None">
+                        <font>
+                            <Font size="22.0"/>
+                        </font>
+                        <HBox.margin>
+                            <Insets right="15.0"/>
+                        </HBox.margin>
+                    </Label>
+                </HBox>
+                <Label fx:id="lastPatientAgeLabel" text="Age: None">
+                    <font>
+                        <Font size="22.0"/>
+                    </font>
+                </Label>
+                <Label fx:id="lastPatientTaxIDLabel" text="TaxID: None">
+                    <font>
+                        <Font size="22.0"/>
+                    </font>
+                </Label>
+                <Label fx:id="lastPatientIllnessLabel" text="Illness: None">
+                    <font>
+                        <Font size="22.0"/>
+                    </font>
+                </Label>
+
+            </VBox>
+        </VBox>
+        <VBox prefHeight="200.0" HBox.hgrow="ALWAYS">
+            <Label text="Current day: None" fx:id="currentDayLabel">
+                <font>
+                    <Font size="30.0"/>
+                </font>
+            </Label>
+            <Label text="Patients who have an appointment today or have missed an appointment:">
+                <font>
+                    <Font size="15.0"/>
+                </font>
+            </Label>
+            <VBox>
+                <ListView fx:id="listView" prefWidth="300.0">
+                </ListView>
+            </VBox>
+        </VBox>
+    </HBox>
+</VBox>

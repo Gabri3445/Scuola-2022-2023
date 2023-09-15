@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="400.0" prefWidth="650.0" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gabri3445.dentist.controllers.CreateController">
+    <HBox alignment="CENTER" prefHeight="80.0">
+        <Label text="Insert a patient">
+            <font>
+                <Font size="44.0" />
+            </font>
+        </Label>
+    </HBox>
+
+    <VBox>
+        <HBox alignment="CENTER">
+            <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                <Label text="Name: " />
+                <TextField fx:id="nameField" />
+            </HBox>
+            <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                <Label text="Surname: " />
+                <TextField fx:id="surnameField" />
+            </HBox>
+            <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                <Label text="Age: " />
+                <TextField fx:id="ageField" />
+            </HBox>
+            <padding>
+                <Insets bottom="20.0" />
+            </padding>
+        </HBox>
+        <HBox alignment="CENTER">
+            <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                <Label text="Tax ID: " />
+                <TextField fx:id="taxIdField" />
+                <padding>
+                    <Insets bottom="20.0" />
+                </padding>
+            </HBox>
+            <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                <Label text="Appointment Date: " />
+                <TextField fx:id="dateField" text="yyyy-mm-dd" />
+                <padding>
+                    <Insets bottom="20.0" />
+                </padding>
+            </HBox>
+        </HBox>
+        <VBox alignment="CENTER">
+            <Label text="Illness: " />
+            <TextArea fx:id="illnessField" maxWidth="300.0" prefHeight="100.0" />
+        </VBox>
+    </VBox>
+
+    <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+        <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+            <Button fx:id="cancelButton" text="Cancel" />
+        </HBox>
+        <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+            <Button fx:id="submitButton" alignment="BOTTOM_RIGHT" text="Submit" />
+        </HBox>
+    </HBox>
+</VBox>

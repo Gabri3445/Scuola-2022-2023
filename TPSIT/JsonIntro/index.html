@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Json Intro</title>
+</head>
+<body>
+<form id="form">
+    <div>
+        <label for="name">
+            First name:
+        </label>
+        <input id="name" name="name" type="text">
+    </div>
+    <div>
+        <label for="lastname">
+            Last name:
+        </label>
+        <input id="lastname" name="lastname" type="text">
+    </div>
+    <div>
+        <label for="age">
+            Age:
+        </label>
+        <input id="age" name="age" type="number">
+    </div>
+    <div>
+        <label for="gender">
+            Gender:
+        </label>
+        <select id="gender" name="gender">
+            <option value="other">Other</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+    </div>
+    <div>
+        <input type="submit">
+    </div>
+    <div id="users">
+    </div>
+</form>
+<script src="./static/js/listener.js"></script>
+</body>
+</html>
